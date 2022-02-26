@@ -1,7 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MainGUI extends JFrame {
+public class MainGUI extends JFrame implements ActionListener {
+    static MainGUI mainGUI;
     private Panel receiptPanel  = new Panel();
     private JPanel northReceiptPanel = new JPanel();
     private JPanel centerReceiptPanel = new JPanel();
@@ -59,7 +62,7 @@ public class MainGUI extends JFrame {
     private ButtonGroup buttonGroup = new ButtonGroup();
 
     private JLabel loggedInTxt = new JLabel("Logged in: ");
-    private JLabel loggedInAs = new JLabel("Karl Marx");
+    private JLabel loggedInAs = new JLabel();
 
     private JLabel totalAmountTXT = new JLabel("TOTAL: ");
     private JLabel totalAmount = new JLabel("1234567890");
@@ -106,11 +109,7 @@ public class MainGUI extends JFrame {
         itemPanel.add(item15);
 
 
-        functionPanel.add(inventoryBtn);
-        functionPanel.add(updateBtn);
         functionPanel.add(ordersBtn);
-        functionPanel.add(addBtn);
-        functionPanel.add(deleteBtn);
 
         qtyPanel.add(checkbox1);
 
@@ -281,6 +280,9 @@ public class MainGUI extends JFrame {
 
         exchangeTXT.setBorder(BorderFactory.createRaisedSoftBevelBorder());
     }
+    public void addActionListener(){
+        inventoryBtn.addActionListener(this);
+    }
 
     MainGUI(){
         addComponents();
@@ -290,6 +292,9 @@ public class MainGUI extends JFrame {
         setForeground();
         setFont();
         setBorder();
+        addActionListener();
+
+
 
 
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -316,6 +321,12 @@ public class MainGUI extends JFrame {
         this.setLayout(null);
         this.setVisible(true);
 
+        if(connectUserSQL.isManagerAccess()) {
+            functionPanel.add(inventoryBtn);
+            functionPanel.add(updateBtn);
+            functionPanel.add(addBtn);
+            functionPanel.add(deleteBtn);
+        }
 
 
     }
@@ -327,13 +338,15 @@ public class MainGUI extends JFrame {
         return Integer.parseInt(totalAmount.getText());
     }
 
-    public static void main(String[] args) {
-       new MainGUI();
+    static Inventory inventory;
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == inventoryBtn) {
+                inventory = new Inventory();
+            }
+
     }
-
-
-
-
 }
 
 // TODO: Logged In:,  Receipts
