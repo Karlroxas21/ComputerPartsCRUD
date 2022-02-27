@@ -344,6 +344,8 @@ public class MainGUI extends JFrame implements ActionListener {
 
     static Inventory inventory;
     static AddToInventory addToInventory;
+    static UpdateInventory updateInventory;
+    static DeleteFromInventory deleteFromInventory;
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -352,6 +354,12 @@ public class MainGUI extends JFrame implements ActionListener {
             }
             if(e.getSource() == addBtn){
                 addToInventory = new AddToInventory();
+            }
+            if(e.getSource() == updateBtn){
+                updateInventory = new UpdateInventory();
+            }
+            if(e.getSource() == deleteBtn){
+                deleteFromInventory = new DeleteFromInventory();
             }
 
     }

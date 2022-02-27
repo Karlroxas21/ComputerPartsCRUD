@@ -5,9 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-public class UpdateInventory extends JFrame {
+public class DeleteFromInventory extends JFrame{
     private JButton backBtn = new JButton("Back");
-    private JButton updateBtn = new JButton("Update");
+    private JButton deleteBtn = new JButton("Delete");
     private JButton refreshBtn = new JButton("Refresh");
 
     private JPanel buttonsPanel = new JPanel();
@@ -16,29 +16,21 @@ public class UpdateInventory extends JFrame {
     JScrollPane scrollPane1 = new JScrollPane();
     JTable moboTable = new JTable();
 
-    private JPanel moboUpdatePanel = new JPanel();
-    private JPanel cpuUpdatePanel = new JPanel();
+    private JPanel moboDeletePanel = new JPanel();
+    private JPanel cpuDeletePanel = new JPanel();
     private JTabbedPane tabbedPane = new JTabbedPane();
 
-    private JPanel updateMoboComponents = new JPanel(); // will add here the components of the UPDATES
+    private JPanel deleteMoboComponents = new JPanel(); // will add here the components of the UPDATES
 
     private JLabel productID = new JLabel("Product ID: ");
     private JTextField productID_TF = new JTextField();
 
-    private JLabel updatePrice_Lbl = new JLabel("Update Price: ");
-    private JTextField updatePrice_TF = new JTextField();
-
-    private JLabel numStock_Lbl = new JLabel("Update Stock: ");
-    private JTextField numStock_TF = new JTextField();
-
-    private JLabel cashPrice_Lbl = new JLabel("Update Cash Price: ");
-    private JTextField cashPrice_TF = new JTextField();
 
 
 
 
 
-    UpdateInventory(){
+    DeleteFromInventory(){
         this.setLayout(new BorderLayout());
 
         setMoboTable();
@@ -48,29 +40,24 @@ public class UpdateInventory extends JFrame {
         moboTable.setEnabled(false);
         scrollPane1.setViewportView(moboTable);
 
-        updateMoboComponents.setLayout(new GridLayout(4, 2));
-        updateMoboComponents.add(productID);
-        updateMoboComponents.add(productID_TF);
-        updateMoboComponents.add(updatePrice_Lbl);
-        updateMoboComponents.add(updatePrice_TF);
-        updateMoboComponents.add(numStock_Lbl);
-        updateMoboComponents.add(numStock_TF);
-        updateMoboComponents.add(cashPrice_Lbl);
-        updateMoboComponents.add(cashPrice_TF);
+        deleteMoboComponents.setLayout(new GridLayout(1, 2));
+        deleteMoboComponents.add(productID);
+        deleteMoboComponents.add(productID_TF);
 
-        moboUpdatePanel.setLayout(new GridLayout(1, 2));
 
-        moboUpdatePanel.add(updateMoboComponents);
-        moboUpdatePanel.add(scrollPane1);
+        moboDeletePanel.setLayout(new GridLayout(1, 2));
+
+        moboDeletePanel.add(deleteMoboComponents);
+        moboDeletePanel.add(scrollPane1);
 
         buttonsPanel.setLayout(new GridLayout(1, 3));
         buttonsPanel.add(backBtn);
-        buttonsPanel.add(updateBtn);
+        buttonsPanel.add(deleteBtn);
         buttonsPanel.add(refreshBtn);
 
 
-        tabbedPane.add("Update Mobo", moboUpdatePanel);
-        tabbedPane.add("Update CPU", cpuUpdatePanel);
+        tabbedPane.add("Update Mobo", moboDeletePanel);
+        tabbedPane.add("Update CPU", cpuDeletePanel);
 
         ActionListener();
 
@@ -142,105 +129,44 @@ public class UpdateInventory extends JFrame {
             }
         });
 
-        updateBtn.addActionListener(new ActionListener() {
+        deleteBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!updatePrice_TF.getText().toString().equals("")) {
-                    updateMoboPrice();
-                }
-                if(!numStock_TF.getText().toString().equals("")){
-                    updateMoboStock();
-                }
-                if(!cashPrice_TF.getText().toString().equals("")){
-                    updateCashPrice();
-                }
-
+                deleteMobo();
             }
         });
         backBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MainGUI.updateInventory.dispose();
+                MainGUI.deleteFromInventory.dispose();
             }
         });
     }
-    public void updateMoboPrice(){
+    public void deleteMobo(){
         try{
             String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
             String user = "papers";
             String password = "papersarewhite";
 
             Connection connection = DriverManager.getConnection(url, user, password);
-            String QUERY = "UPDATE MOBO set Price= ? where Product_ID = ?";
+            String QUERY = "DELETE MOBO where Product_ID = ?";
 
             PreparedStatement statement = connection.prepareStatement(QUERY);
 
-            int price = Integer.parseInt(String.valueOf(updatePrice_TF.getText()));
             int Product_ID = Integer.parseInt(String.valueOf(productID_TF.getText()));
-
-            statement.setInt(1, price);
-            statement.setInt(2, Product_ID);
+            statement.setInt(1, Product_ID);
 
             statement.execute();
 
-            JOptionPane.showMessageDialog(null, "Updated Price Baby");
+            JOptionPane.showMessageDialog(null, "Deleted Baby");
 
         }catch(Exception ex){
             ex.printStackTrace();
         }
     }
-    public void updateMoboStock(){
-        try{
-            String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
-            String user = "papers";
-            String password = "papersarewhite";
 
-            Connection connection = DriverManager.getConnection(url, user, password);
-            String QUERY = "UPDATE MOBO set Num_Stock= ? where Product_ID = ?";
-
-            PreparedStatement statement = connection.prepareStatement(QUERY);
-
-            int num_Stock = Integer.parseInt(String.valueOf(numStock_TF.getText()));
-            int Product_ID = Integer.parseInt(String.valueOf(productID_TF.getText()));
-
-            statement.setInt(1, num_Stock);
-            statement.setInt(2, Product_ID);
-
-            statement.execute();
-
-            JOptionPane.showMessageDialog(null, "Updated Stock Baby");
-
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void updateCashPrice(){
-        try{
-            String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
-            String user = "papers";
-            String password = "papersarewhite";
-
-            Connection connection = DriverManager.getConnection(url, user, password);
-            String QUERY = "UPDATE MOBO set Cash_Price= ? where Product_ID = ?";
-
-            PreparedStatement statement = connection.prepareStatement(QUERY);
-
-            int cash_Price = Integer.parseInt(String.valueOf(cashPrice_TF.getText()));
-            int Product_ID = Integer.parseInt(String.valueOf(productID_TF.getText()));
-
-            statement.setInt(1, cash_Price);
-            statement.setInt(2, Product_ID);
-
-            statement.execute();
-
-            JOptionPane.showMessageDialog(null, "Updated Cash Price Baby");
-
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
-    }
 
     public static void main(String[] args) {
-        new UpdateInventory();
+        new DeleteFromInventory();
     }
 }
