@@ -325,7 +325,7 @@ public class MainGUI extends JFrame implements ActionListener {
         this.setLayout(null);
         this.setVisible(true);
 
-        if(connectUserSQL.isManagerAccess()) {
+        if(ConnectUserSQL.isManagerAccess()) {
             functionPanel.add(inventoryBtn);
             functionPanel.add(updateBtn);
             functionPanel.add(addBtn);
@@ -343,7 +343,7 @@ public class MainGUI extends JFrame implements ActionListener {
     }
 
     static Inventory inventory;
-    static addToInventory addToInventory;
+    static AddToInventory addToInventory;
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -351,7 +351,7 @@ public class MainGUI extends JFrame implements ActionListener {
                 inventory = new Inventory();
             }
             if(e.getSource() == addBtn){
-                addToInventory = new addToInventory();
+                addToInventory = new AddToInventory();
             }
 
     }

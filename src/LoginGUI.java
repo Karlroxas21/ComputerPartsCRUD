@@ -81,7 +81,7 @@ public class LoginGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == loginButton){
-            connectUserSQL.correctUserSQL();
+            ConnectUserSQL.correctUserSQL();
             if(isAuthorized){
                 MainGUI.mainGUI = new MainGUI();
                 this.dispose();

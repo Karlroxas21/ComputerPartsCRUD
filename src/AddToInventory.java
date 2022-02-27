@@ -5,9 +5,8 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 
-public class addToInventory extends JFrame {
+public class AddToInventory extends JFrame {
     JButton backButton = new JButton("Back");
 
     private JPanel moboAddPanel = new JPanel();
@@ -33,7 +32,9 @@ public class addToInventory extends JFrame {
     private JTextField form_FactorTF = new JTextField();
 
     private JButton insertBTN = new JButton("INSERT");
-    addToInventory(){
+
+    private JPanel buttonsPanel = new JPanel();
+    AddToInventory(){
         this.setLayout(new BorderLayout());
 
         moboAddPanel.setLayout(new GridLayout(8, 3));
@@ -69,8 +70,11 @@ public class addToInventory extends JFrame {
 
         ActionListener();
 
-        this.add(insertBTN, BorderLayout.SOUTH);
-        this.add(backButton, BorderLayout.NORTH);
+        buttonsPanel.setLayout(new GridLayout(1, 2));
+        buttonsPanel.add(backButton);
+        buttonsPanel.add(insertBTN);
+
+        this.add(buttonsPanel, BorderLayout.SOUTH);
         this.add(tabbedPane, BorderLayout.CENTER);
         this.setTitle("Add items to Inventory");
         this.setSize(800, 500);
@@ -109,6 +113,8 @@ public class addToInventory extends JFrame {
 
             statement.execute();
 
+            JOptionPane.showMessageDialog(null, "Data Inserted Baby");
+
 
         }catch(Exception ex){
             ex.printStackTrace();
@@ -131,6 +137,6 @@ public class addToInventory extends JFrame {
     }
 
     public static void main(String[] args) {
-        new addToInventory();
+        new AddToInventory();
     }
 }

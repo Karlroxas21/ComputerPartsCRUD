@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.sql.*;
 
-public class connectUserSQL {
+public class ConnectUserSQL {
     private static boolean managerAccess;
 
     public static void setManagerAccess(boolean managerAccess) {
-        connectUserSQL.managerAccess = managerAccess;
+        ConnectUserSQL.managerAccess = managerAccess;
     }
     public static boolean isManagerAccess() {
         return managerAccess;
