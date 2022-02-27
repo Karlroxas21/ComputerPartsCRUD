@@ -282,6 +282,10 @@ public class MainGUI extends JFrame implements ActionListener {
     }
     public void addActionListener(){
         inventoryBtn.addActionListener(this);
+        ordersBtn.addActionListener(this);
+        updateBtn.addActionListener(this);
+        addBtn.addActionListener(this);
+        deleteBtn.addActionListener(this);
     }
 
     MainGUI(){
@@ -339,11 +343,15 @@ public class MainGUI extends JFrame implements ActionListener {
     }
 
     static Inventory inventory;
+    static addToInventory addToInventory;
 
     @Override
     public void actionPerformed(ActionEvent e) {
             if (e.getSource() == inventoryBtn) {
                 inventory = new Inventory();
+            }
+            if(e.getSource() == addBtn){
+                addToInventory = new addToInventory();
             }
 
     }
