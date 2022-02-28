@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 
 public class LoginGUI extends JFrame implements ActionListener {
@@ -15,8 +19,7 @@ public class LoginGUI extends JFrame implements ActionListener {
     private JLabel userLabel = new JLabel("Username");
     private JLabel pwLabel = new JLabel("Password");
     private static JLabel message = new JLabel("TEST MESSAGE");
-
-    private final String name = "Anne";
+    
 
 
 
@@ -67,11 +70,34 @@ public class LoginGUI extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    static public String getAccFName() {
+        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=Credentials";
+        String user = "papers";
+        String password = "papersarewhite";
+        String name = "";
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, password);
+            String QUERY = "SELECT Fname FROM pos_account WHERE account_username=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+
+            preparedStatement.setString(1, getInputUsername());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                name = resultSet.getString("Fname");
+            }
+
+            resultSet.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
 
-    static String getClerkName(String name){
         return name;
     }
+
+
 
     public static void main(String[] args) {
         new LoginGUI();
@@ -89,5 +115,6 @@ public class LoginGUI extends JFrame implements ActionListener {
 
         }
     }
+
 
 }

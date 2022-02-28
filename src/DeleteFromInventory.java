@@ -20,14 +20,10 @@ public class DeleteFromInventory extends JFrame{
     private JPanel cpuDeletePanel = new JPanel();
     private JTabbedPane tabbedPane = new JTabbedPane();
 
-    private JPanel deleteMoboComponents = new JPanel(); 
+    private JPanel deleteMoboComponents = new JPanel();
 
     private JLabel productID = new JLabel("Product ID: ");
     private JTextField productID_TF = new JTextField();
-
-
-
-
 
 
     DeleteFromInventory(){
@@ -160,6 +156,7 @@ public class DeleteFromInventory extends JFrame{
 
             JOptionPane.showMessageDialog(null, "Deleted Baby");
 
+            statement.close();
         }catch(Exception ex){
             ex.printStackTrace();
         }

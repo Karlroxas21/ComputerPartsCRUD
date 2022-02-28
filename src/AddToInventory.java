@@ -1,10 +1,10 @@
 import javax.swing.*;
+import javax.swing.plaf.nimbus.State;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
+import java.util.concurrent.ExecutionException;
 
 public class AddToInventory extends JFrame {
     JButton backButton = new JButton("Back");
@@ -34,6 +34,8 @@ public class AddToInventory extends JFrame {
     private JButton insertBTN = new JButton("INSERT");
 
     private JPanel buttonsPanel = new JPanel();
+
+
     AddToInventory(){
         this.setLayout(new BorderLayout());
 
@@ -115,6 +117,8 @@ public class AddToInventory extends JFrame {
 
             JOptionPane.showMessageDialog(null, "Data Inserted Baby");
 
+            statement.close();
+
 
         }catch(Exception ex){
             ex.printStackTrace();
@@ -125,7 +129,22 @@ public class AddToInventory extends JFrame {
         insertBTN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                insertToSQL();
+
+                if(getRowCount() <= 15){
+                    insertToSQL();
+                }else if(getRowCount() > 15){
+                    JOptionPane.showMessageDialog(null, "15 is the max Product");
+                }
+
+
+                brandTF.setText("");
+                modelTF.setText("");
+                priceTF.setText("");
+                num_StockTF.setText("");
+                cash_PriceTF.setText("");
+                cpu_SocketTF.setText("");
+                mem_TypeTF.setText("");
+                form_FactorTF.setText("");
             }
         });
         backButton.addActionListener(new ActionListener() {
@@ -134,6 +153,29 @@ public class AddToInventory extends JFrame {
                 MainGUI.addToInventory.dispose();
             }
         });
+    }
+
+    public static int getRowCount(){
+        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
+        String user = "papers";
+        String password = "papersarewhite";
+        int count = 0;
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, password);
+            String QUERY = "SELECT COUNT (*) as 'rowcount' From MOBO;";
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(QUERY);
+            resultSet.next();
+            count += resultSet.getInt("rowcount");
+            resultSet.close();
+
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return  count;
     }
 
     public static void main(String[] args) {

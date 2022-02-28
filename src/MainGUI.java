@@ -2,6 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class MainGUI extends JFrame implements ActionListener {
     static MainGUI mainGUI;
@@ -62,7 +67,7 @@ public class MainGUI extends JFrame implements ActionListener {
     private ButtonGroup buttonGroup = new ButtonGroup();
 
     private JLabel loggedInTxt = new JLabel("Logged in: ");
-    private JLabel loggedInAs = new JLabel();
+    private JLabel loggedInAs = new JLabel(LoginGUI.getAccFName());
 
     private JLabel totalAmountTXT = new JLabel("TOTAL: ");
     private JLabel totalAmount = new JLabel("1234567890");
@@ -211,7 +216,7 @@ public class MainGUI extends JFrame implements ActionListener {
         northReceiptPanel.setBackground(new Color(0x142d3a));
         centerReceiptPanel.setBackground(Color.green);
 
-        //         qtyPanel.setBackground(new Color(0x626060));
+//                 qtyPanel.setBackground(new Color(0x626060));
 
 
     }
@@ -286,6 +291,23 @@ public class MainGUI extends JFrame implements ActionListener {
         updateBtn.addActionListener(this);
         addBtn.addActionListener(this);
         deleteBtn.addActionListener(this);
+
+        item1.addActionListener(this);
+        item2.addActionListener(this);
+        item3.addActionListener(this);
+        item4.addActionListener(this);
+        item5.addActionListener(this);
+        item6.addActionListener(this);
+        item7.addActionListener(this);
+        item8.addActionListener(this);
+        item9.addActionListener(this);
+        item10.addActionListener(this);
+        item11.addActionListener(this);
+        item12.addActionListener(this);
+        item13.addActionListener(this);
+        item14.addActionListener(this);
+        item15.addActionListener(this);
+
     }
 
     MainGUI(){
@@ -308,7 +330,7 @@ public class MainGUI extends JFrame implements ActionListener {
 //        setTextReceiptDescription();
 
         
-
+        setItemPanelName();
 
         this.add(receiptPanel);
         this.add(itemPanel);
@@ -347,6 +369,10 @@ public class MainGUI extends JFrame implements ActionListener {
     static UpdateInventory updateInventory;
     static DeleteFromInventory deleteFromInventory;
 
+    public static void main(String[] args) {
+        new MainGUI();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
             if (e.getSource() == inventoryBtn) {
@@ -363,6 +389,56 @@ public class MainGUI extends JFrame implements ActionListener {
             }
 
     }
+
+    public void setItemPanelName(){
+
+        try{
+
+                String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
+                String user = "papers";
+                String password = "papersarewhite";
+
+            Connection connection = DriverManager.getConnection(url,user, password);
+            String QUERY = "SELECT Brand, Model from MOBO";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(QUERY);
+
+            ArrayList<String> brand = new ArrayList<>();
+            ArrayList<String> model = new ArrayList<>();
+
+            int i = 0;
+            while(resultSet.next()){
+                String Brand = resultSet.getString("Brand");
+                String Model = resultSet.getString("Model");
+
+                brand.add(Brand);
+                model.add(Model);
+
+            }
+
+            item1.setText("<html><center>"+brand.get(0)+"<br>"+model.get(0)+"</center></html>");
+            item2.setText("<html><center>"+brand.get(1)+"<br>"+model.get(1)+"</center></html>");
+            item3.setText("<html><center>"+brand.get(2)+"<br>"+model.get(2)+"</center></html>");
+            item4.setText("<html><center>"+brand.get(3)+"<br>"+model.get(3)+"</center></html>");
+            item5.setText("<html><center>"+brand.get(4)+"<br>"+model.get(4)+"</center></html>");
+            item6.setText("<html><center>"+brand.get(5)+"<br>"+model.get(5)+"</center></html>");
+            item7.setText("<html><center>"+brand.get(6)+"<br>"+model.get(6)+"</center></html>");
+            item8.setText("<html><center>"+brand.get(7)+"<br>"+model.get(7)+"</center></html>");
+            item9.setText("<html><center>"+brand.get(8)+"<br>"+model.get(8)+"</center></html>");
+            item10.setText("<html><center>"+brand.get(9)+"<br>"+model.get(9)+"</center></html>");
+            item11.setText("<html><center>"+brand.get(10)+"<br>"+model.get(10)+"</center></html>");
+            item12.setText("<html><center>"+brand.get(11)+"<br>"+model.get(11)+"</center></html>");
+            item13.setText("<html><center>"+brand.get(12)+"<br>"+model.get(12)+"</center></html>");
+            item14.setText("<html><center>"+brand.get(12)+"<br>"+model.get(13)+"</center></html>");
+            item15.setText("<html><center>"+brand.get(12)+"<br>"+model.get(14)+"</center></html>");
+
+
+        }catch (Exception ex){
+
+        }
+    }
+
+
 }
 
-// TODO: Logged In:,  Receipts
+// TODO: Buttons in order and receipt

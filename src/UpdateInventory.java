@@ -235,6 +235,8 @@ public class UpdateInventory extends JFrame {
 
             JOptionPane.showMessageDialog(null, "Updated Cash Price Baby");
 
+            statement.close();
+
         }catch(Exception ex){
             ex.printStackTrace();
         }

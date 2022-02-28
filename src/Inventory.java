@@ -25,7 +25,7 @@ public class Inventory extends JFrame {
     DefaultTableModel moboDTM;
 
 
-    //TODO: ADD JTABLE AND CONNECT IT TO DATABASE
+
 
 
     Inventory(){
@@ -119,7 +119,7 @@ public class Inventory extends JFrame {
             }
 
             moboDTM = new DefaultTableModel(data, columns);
-
+            resultSet.close();
         }catch (Exception ex){
             ex.printStackTrace();
         }
