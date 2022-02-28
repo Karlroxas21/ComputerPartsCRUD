@@ -2,11 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.io.File;
+import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class MainGUI extends JFrame implements ActionListener {
     static MainGUI mainGUI;
@@ -82,6 +82,8 @@ public class MainGUI extends JFrame implements ActionListener {
     JScrollPane scrollPane = new JScrollPane(receiptDescription);
 
     private JButton payButton = new JButton("PAY");
+
+    static int QTY;
 
     public void addComponents(){
         categoryPanel.add(mouseCategoryBtn);
@@ -308,6 +310,17 @@ public class MainGUI extends JFrame implements ActionListener {
         item14.addActionListener(this);
         item15.addActionListener(this);
 
+        checkbox1.addActionListener(this);
+        checkBox2.addActionListener(this);
+        checkbox3.addActionListener(this);
+        checkbox4.addActionListener(this);
+        checkbox5.addActionListener(this);
+        checkbox6.addActionListener(this);
+        checkbox7.addActionListener(this);
+        checkbox8.addActionListener(this);
+        checkbox9.addActionListener(this);
+        checkbox10.addActionListener(this);
+
     }
 
     MainGUI(){
@@ -331,6 +344,17 @@ public class MainGUI extends JFrame implements ActionListener {
 
         
         setItemPanelName();
+
+
+
+        importFont();
+        receiptDescription.setFont(new Font("Fake Receipt", Font.PLAIN, 10));
+
+        receiptDescription.setText("**************************************"+"\n"
+                +"Computer Parts/Peripherals Point of Sale System"+"\n"
+                +"Contact No-09298359386"+"\n"
+                +"Address- Manila City"+"\n"
+                +"**************************************"+"\n");
 
         this.add(receiptPanel);
         this.add(itemPanel);
@@ -356,12 +380,19 @@ public class MainGUI extends JFrame implements ActionListener {
 
 
     }
-    public void setTextReceiptDescription(String s){
-        receiptDescription.setText(s);
-    }
+
 
     public int getTotalAmount(){
         return Integer.parseInt(totalAmount.getText());
+    }
+    public void importFont(){
+        try {
+            GraphicsEnvironment ge =
+                    GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fake receipt.ttf")));
+        } catch (IOException |FontFormatException e) {
+            e.printStackTrace();
+        }
     }
 
     static Inventory inventory;
@@ -371,6 +402,10 @@ public class MainGUI extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         new MainGUI();
+
+
+
+
     }
 
     @Override
@@ -387,24 +422,199 @@ public class MainGUI extends JFrame implements ActionListener {
             if(e.getSource() == deleteBtn){
                 deleteFromInventory = new DeleteFromInventory();
             }
+            if(e.getSource() == item1){
+
+            }
+            if(e.getSource() == item2){
+
+            }
+            if(e.getSource() == item3){
+
+            }
+            if(e.getSource() == item4){
+
+            }
+            if(e.getSource() == item5){
+
+            }
+            if(e.getSource() == item6){
+
+            }
+            if(e.getSource() == item7){
+
+            }
+            if(e.getSource() == item8){
+
+            }
+            if(e.getSource() == item9){
+
+            }
+            if(e.getSource() == item10){
+
+            }
+            if(e.getSource() == item11){
+
+            }
+            if(e.getSource() == item12){
+
+            }
+            if(e.getSource() == item13){
+
+            }
+            if(e.getSource() == item14){
+
+            }
+            if(e.getSource() == item15){
+
+            }
+            if(e.getSource() == checkbox1){
+                QTY = 1;
+            }
+            if(e.getSource() == checkBox2){
+                QTY = 2;
+            }
+            if(e.getSource() == checkbox3){
+                QTY = 3;
+            }
+            if(e.getSource() == checkbox4){
+                QTY = 4;
+            }
+            if(e.getSource() == checkbox5){
+                QTY = 5;
+            }
+            if(e.getSource() == checkbox6){
+                QTY = 6;
+            }
+            if(e.getSource() == checkbox7){
+                QTY = 7;
+            }
+            if(e.getSource() == checkbox8){
+                QTY = 8;
+            }
+            if(e.getSource() == checkbox9){
+                QTY = 9;
+            }
+            if(e.getSource() == checkbox10){
+                QTY = 10;
+            }
 
     }
+
+
+    ArrayList<String> brand = new ArrayList<>();
+    ArrayList<String> model = new ArrayList<>();
+
+    public static int checkItemStock(int product_id){
+        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
+        String user = "papers";
+        String password = "papersarewhite";
+        int num_Stock = 0;
+        try {
+            Connection connection = DriverManager.getConnection(url, user, password);
+            String QUERY = "SELECT Num_Stock from MOBO WHERE Product_ID=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+            preparedStatement.setString(1, String.valueOf(product_id).toString());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+
+                num_Stock = resultSet.getInt("Num_Stock");
+                return  num_Stock;
+            }
+
+
+        }catch (Exception ex){
+
+        }
+
+        return 0;
+    }
+    public static int minusItemStock(int product_id, int QTY){
+        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
+        String user = "papers";
+        String password = "papersarewhite";
+        int num_Stock = 0;
+        try {
+            Connection connection = DriverManager.getConnection(url, user, password);
+            String QUERY = "SELECT Num_Stock from MOBO WHERE Product_ID=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+            preparedStatement.setString(1, String.valueOf(product_id).toString());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+
+                num_Stock = resultSet.getInt("Num_Stock");
+
+                if(QTY > num_Stock){
+                    JOptionPane.showMessageDialog(null, "Stock is only " + num_Stock);
+                }else {
+                    String updateStockQuery = "UPDATE MOBO set Num_Stock=? where Product_ID=?";
+                    PreparedStatement ps = connection.prepareStatement(updateStockQuery);
+                    int updateStock = num_Stock - QTY;
+                    ps.setInt(1, updateStock);
+                    ps.setInt(2, product_id);
+
+                    ps.execute();
+                    ps.close();
+
+                    return updateStock;
+
+                }
+            }
+            preparedStatement.close();
+
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        return 0;
+    }
+    public static int checkItemPrice(int product_id){
+        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
+        String user = "papers";
+        String password = "papersarewhite";
+        int Price = 0;
+        try {
+            Connection connection = DriverManager.getConnection(url, user, password);
+            String QUERY = "SELECT Price from MOBO WHERE Product_ID=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+            preparedStatement.setString(1, String.valueOf(product_id).toString());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+
+                Price = resultSet.getInt("Price");
+                return  Price;
+            }
+
+
+        }catch (Exception ex){
+
+        }
+
+        return 0;
+    }
+
+
+
+
 
     public void setItemPanelName(){
 
         try{
 
-                String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
-                String user = "papers";
-                String password = "papersarewhite";
+            String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
+            String user = "papers";
+            String password = "papersarewhite";
 
             Connection connection = DriverManager.getConnection(url,user, password);
             String QUERY = "SELECT Brand, Model from MOBO";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(QUERY);
 
-            ArrayList<String> brand = new ArrayList<>();
-            ArrayList<String> model = new ArrayList<>();
+            brand = new ArrayList<>();
+            model = new ArrayList<>();
 
             int i = 0;
             while(resultSet.next()){
@@ -415,6 +625,8 @@ public class MainGUI extends JFrame implements ActionListener {
                 model.add(Model);
 
             }
+
+            resultSet.close();
 
             item1.setText("<html><center>"+brand.get(0)+"<br>"+model.get(0)+"</center></html>");
             item2.setText("<html><center>"+brand.get(1)+"<br>"+model.get(1)+"</center></html>");

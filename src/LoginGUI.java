@@ -19,7 +19,7 @@ public class LoginGUI extends JFrame implements ActionListener {
     private JLabel userLabel = new JLabel("Username");
     private JLabel pwLabel = new JLabel("Password");
     private static JLabel message = new JLabel("TEST MESSAGE");
-    
+
 
 
 
