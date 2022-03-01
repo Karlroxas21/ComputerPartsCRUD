@@ -60,7 +60,7 @@ public class DeleteFromInventory extends JFrame{
 
         this.add(buttonsPanel, BorderLayout.SOUTH);
         this.add(tabbedPane, BorderLayout.CENTER);
-        this.setTitle("Update Items in Inventory");
+        this.setTitle("Delete Items in Inventory");
         this.setSize(800, 500);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
