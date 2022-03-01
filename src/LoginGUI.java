@@ -96,6 +96,32 @@ public class LoginGUI extends JFrame implements ActionListener {
 
         return name;
     }
+    static public String getAccLName() {
+        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=Credentials";
+        String user = "papers";
+        String password = "papersarewhite";
+        String LName = "";
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, password);
+            String QUERY = "SELECT Lname FROM pos_account WHERE account_username=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+
+            preparedStatement.setString(1, getInputUsername());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                LName = resultSet.getString("Lname");
+            }
+
+            resultSet.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+
+        return LName;
+    }
 
 
 
