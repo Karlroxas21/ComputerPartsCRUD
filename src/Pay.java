@@ -11,6 +11,7 @@ public class Pay extends JFrame implements  ActionListener{
     private JButton cash = new JButton("Cash");
 
 
+
     Pay(){
         mainPanel.setLayout(new GridLayout(1, 3));
 
@@ -20,6 +21,7 @@ public class Pay extends JFrame implements  ActionListener{
         mainPanel.add(debitCard);
         mainPanel.add(cash);
 
+
         creditCard.setFocusable(false);
         debitCard.setFocusable(false);
         cash.setFocusable(false);
@@ -27,6 +29,7 @@ public class Pay extends JFrame implements  ActionListener{
         creditCard.addActionListener(this);
         debitCard.addActionListener(this);
         cash.addActionListener(this);
+
 
 
 
@@ -47,6 +50,7 @@ public class Pay extends JFrame implements  ActionListener{
     CreditCard cc;
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if(e.getSource() == creditCard){
             cc = new CreditCard();
             this.dispose();

@@ -809,8 +809,19 @@ public class MainGUI extends JFrame implements ActionListener {
                 receiptDescription.append(String.format("%134s", String.valueOf(totalItems).toString() + " Item(s)"));
                 receiptDescription.append(String.format("%23d", price));
                 receiptDescription.append(String.format("\n"+"%70s", "---------------------"));
-                receiptDescription.append(String.format("%134s", "Amount Due: " + pesoSign));
-                receiptDescription.append(String.format("%23d", price));
+                receiptDescription.append(String.format("%142s", "Amount Due        : "));
+                receiptDescription.append(String.format("%1s", String.valueOf(pesoSign)));
+                receiptDescription.append(String.format("%5d", price));
+
+                Double vat = (double) (price * (12 / 100.0f));
+                Double total = vat + price;
+                receiptDescription.append(String.format("%76s", "VAT AMOUNT(12%)   : "));
+                receiptDescription.append(String.format("%2.2f", Double.parseDouble(String.valueOf(vat))));
+                receiptDescription.append(String.format("%79s", "TOTAL             : "));
+                receiptDescription.append(String.format("%2.2f", Double.parseDouble(String.valueOf(total))));
+
+
+
 
                 pay = new Pay();
 

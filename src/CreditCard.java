@@ -13,17 +13,20 @@ public class CreditCard extends JFrame implements ActionListener {
     private JLabel cc_Num = new JLabel("Enter CC number: ");
     private JTextArea enterCcNum = new JTextArea();
     private JButton button = new JButton("ENTER");
+    private JButton back = new JButton("Back");
 
     private JPanel panel = new JPanel();
 
     CreditCard(){
-        panel.setLayout(new GridLayout(1, 3));
+        panel.setLayout(new GridLayout(1, 4));
 
+        panel.add(back);
         panel.add(cc_Num);
         panel.add(enterCcNum);
         panel.add(button);
 
         button.addActionListener(this);
+        back.addActionListener(this);
 
         button.setFocusable(false);
         enterCcNum.setLineWrap(true);
@@ -40,8 +43,7 @@ public class CreditCard extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-//        new CreditCard();
-
+        new CreditCard();
 
     }
 
@@ -49,20 +51,30 @@ public class CreditCard extends JFrame implements ActionListener {
         return Integer.parseInt(enterCcNum.getText().toString());
     }
     Receipt receipt;
+    Pay pay;
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == button){
-            if(MainGUI.getTotalAmount() <= checkCreditBalance(getCC_Num())) {
-                minusCCBalance(getCC_Num(), MainGUI.getTotalAmount());
+        if(e.getSource() == back){
+            pay = new Pay();
+            this.dispose();
+        }
+        if(e.getSource() == button) {
+            if (isCCNumValid(getCC_Num())) {
 
-                JOptionPane.showMessageDialog(null, "Payment done! Thanks for buying");
+                if (MainGUI.getTotalAmount() <= checkCreditBalance(getCC_Num())) {
+                    minusCCBalance(getCC_Num(), MainGUI.getTotalAmount());
 
-                receipt = new Receipt();
+                    Receipt.paymentType = "Credit Card";
+                    JOptionPane.showMessageDialog(null, "Payment done! Thanks for buying");
 
-                MainGUI.receiptDescription.setText(String.valueOf(MainGUI.receiptSB).toString());
-                this.dispose();
+                    receipt = new Receipt();
+
+                    MainGUI.receiptDescription.setText(String.valueOf(MainGUI.receiptSB).toString());
+                    this.dispose();
+                } else
+                    JOptionPane.showMessageDialog(null, "Your limit is " + checkCreditBalance(getCC_Num()) + " and you will pay " + MainGUI.getTotalAmount());
             }else
-                JOptionPane.showMessageDialog(null, "Your balance is " + checkCreditBalance(getCC_Num()) + " and you will pay " + MainGUI.getTotalAmount());
+                JOptionPane.showMessageDialog(null, "Credit Card Number Not Valid!");
         }
 
     }
@@ -118,6 +130,35 @@ public class CreditCard extends JFrame implements ActionListener {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+    }
+
+    public static boolean isCCNumValid(int CC_ID){
+        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=PaymentTypes";
+        String user = "papers";
+        String password = "papersarewhite";
+        int ccID = 0;
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, password);
+            String QUERY = "select Credit_Card_Num from CreditCard where Credit_Card_Num=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+            preparedStatement.setInt(1, CC_ID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                ccID = resultSet.getInt("Credit_Card_Num");
+                if(CC_ID != ccID){
+
+                    return false;
+                }else
+                    return true;
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
 
     }
 

@@ -1,9 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Receipt extends JFrame {
+public class Receipt extends JFrame implements  ActionListener{
     JTextArea receiptDescription = new JTextArea();
     JScrollPane scrollPane = new JScrollPane(receiptDescription);
+    JButton exit = new JButton("Exit");
+
+    static String paymentType = "";
 
 
     Receipt(){
@@ -14,7 +19,13 @@ public class Receipt extends JFrame {
 
         String text = MainGUI.receiptDescription.getText();
         receiptDescription.setText(text);
+        if(paymentType.equals("Credit Card") || paymentType.equals("Debit Card")) {
+            receiptDescription.append(String.format("%136s", "CHANGE: 0"));
+        }
+        receiptDescription.append(String.format("%96s", "Payment Type: " + paymentType));
+
         receiptDescription.setLineWrap(true);
+        this.add(exit, BorderLayout.SOUTH);
         this.add(scrollPane, BorderLayout.CENTER);
         this.setTitle("You Receipt Baby");
         this.setResizable(false);
@@ -23,9 +34,20 @@ public class Receipt extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
 
+        exit.addActionListener(this);
+
+
+
     }
 
     public static void main(String[] args) {
         new Receipt();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == exit){
+            this.dispose();
+        }
     }
 }
