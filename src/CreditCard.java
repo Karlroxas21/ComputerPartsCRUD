@@ -11,7 +11,7 @@ import java.util.Locale;
 public class CreditCard extends JFrame implements ActionListener {
 
     private JLabel cc_Num = new JLabel("Enter CC number: ");
-    private JTextArea enterCcNum = new JTextArea();
+    private static JTextArea enterCcNum = new JTextArea();
     private JButton button = new JButton("ENTER");
     private JButton back = new JButton("Back");
 
@@ -35,7 +35,7 @@ public class CreditCard extends JFrame implements ActionListener {
         this.setResizable(false);
         this.add(panel, BorderLayout.CENTER);
         this.setTitle("Credit Card");
-        this.setSize(400, 80);
+        this.setSize(500, 80);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -44,14 +44,16 @@ public class CreditCard extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         new CreditCard();
-
     }
 
-    public int getCC_Num(){
+    static public int getCC_Num(){
         return Integer.parseInt(enterCcNum.getText().toString());
     }
     Receipt receipt;
     Pay pay;
+    EnterPassword enterPassword;
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == back){
@@ -60,21 +62,11 @@ public class CreditCard extends JFrame implements ActionListener {
         }
         if(e.getSource() == button) {
             if (isCCNumValid(getCC_Num())) {
-
-                if (MainGUI.getTotalAmount() <= checkCreditBalance(getCC_Num())) {
-                    minusCCBalance(getCC_Num(), MainGUI.getTotalAmount());
-
-                    Receipt.paymentType = "Credit Card";
-                    JOptionPane.showMessageDialog(null, "Payment done! Thanks for buying");
-
-                    receipt = new Receipt();
-
-                    MainGUI.receiptDescription.setText(String.valueOf(MainGUI.receiptSB).toString());
-                    this.dispose();
-                } else
-                    JOptionPane.showMessageDialog(null, "Your limit is " + checkCreditBalance(getCC_Num()) + " and you will pay " + MainGUI.getTotalAmount());
+                enterPassword = new EnterPassword();
+                this.dispose();
             }else
                 JOptionPane.showMessageDialog(null, "Credit Card Number Not Valid!");
+
         }
 
     }
@@ -163,4 +155,7 @@ public class CreditCard extends JFrame implements ActionListener {
     }
 
 
-}
+
+
+
+    }

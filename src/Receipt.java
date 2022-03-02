@@ -25,6 +25,7 @@ public class Receipt extends JFrame implements  ActionListener{
         receiptDescription.append(String.format("%96s", "Payment Type: " + paymentType));
 
         receiptDescription.setLineWrap(true);
+        receiptDescription.setEditable(false);
         this.add(exit, BorderLayout.SOUTH);
         this.add(scrollPane, BorderLayout.CENTER);
         this.setTitle("You Receipt Baby");

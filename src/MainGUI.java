@@ -437,6 +437,8 @@ public class MainGUI extends JFrame implements ActionListener {
     }
 
     Pay pay;
+    static Double total;
+    static Double totalWithTAX;
     @Override
     public void actionPerformed(ActionEvent e) {
             if (e.getSource() == inventoryBtn) {
@@ -814,11 +816,14 @@ public class MainGUI extends JFrame implements ActionListener {
                 receiptDescription.append(String.format("%5d", price));
 
                 Double vat = (double) (price * (12 / 100.0f));
-                Double total = vat + price;
+                total = Double.parseDouble(vat.toString()) + price;
+                totalWithTAX = Double.parseDouble(vat.toString()) + price;
                 receiptDescription.append(String.format("%76s", "VAT AMOUNT(12%)   : "));
                 receiptDescription.append(String.format("%2.2f", Double.parseDouble(String.valueOf(vat))));
-                receiptDescription.append(String.format("%79s", "TOTAL             : "));
+                receiptDescription.append(String.format("%77s", "TOTAL             : "));
                 receiptDescription.append(String.format("%2.2f", Double.parseDouble(String.valueOf(total))));
+
+
 
 
 
@@ -1026,5 +1031,3 @@ public class MainGUI extends JFrame implements ActionListener {
 
 
 }
-
-// TODO: Buttons in order and receipt
