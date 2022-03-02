@@ -52,3 +52,5 @@ public class Receipt extends JFrame implements  ActionListener{
         }
     }
 }
+
+//TODO: ADD RECEIPT IN DATABASE

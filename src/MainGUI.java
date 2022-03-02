@@ -421,7 +421,6 @@ public class MainGUI extends JFrame implements ActionListener {
             + "TIN No.: 010-021-930-002"
             + "Contact No-09298359386" + "\n"
             + "Address- Manila City" + "\n"
-            + "Receipt Number: " + String.valueOf(receiptNum) + "\n"
             + "**************************************" + "\n"
             + "SALES NOTICE" + "\n"
             + "Cashier: " + cashier + "\n"
@@ -820,8 +819,12 @@ public class MainGUI extends JFrame implements ActionListener {
                 totalWithTAX = Double.parseDouble(vat.toString()) + price;
                 receiptDescription.append(String.format("%76s", "VAT AMOUNT(12%)   : "));
                 receiptDescription.append(String.format("%2.2f", Double.parseDouble(String.valueOf(vat))));
-                receiptDescription.append(String.format("%77s", "TOTAL             : "));
+                receiptDescription.append(String.format("%79s", "TOTAL             : "));
                 receiptDescription.append(String.format("%2.2f", Double.parseDouble(String.valueOf(total))));
+
+                receiptDescription.append(String.format("%80s", "Receipt Number    :  "));
+                receiptDescription.append(String.format("%3d", receiptNum)); //TODO: the receipt num should be located at database!
+
 
 
 
