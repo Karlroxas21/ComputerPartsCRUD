@@ -1,3 +1,3 @@
-public class DebitCard {
+public class Cash {
     //TODO: ADD DEBIT CASH PAYMENT
 }

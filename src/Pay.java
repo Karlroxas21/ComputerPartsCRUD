@@ -10,6 +10,7 @@ public class Pay extends JFrame implements  ActionListener{
     private JButton debitCard = new JButton("Debit Card");
     private JButton cash = new JButton("Cash");
 
+    static boolean isPaymentSuccess = false;
 
 
     Pay(){
@@ -46,6 +47,8 @@ public class Pay extends JFrame implements  ActionListener{
     public static void main(String[] args) {
         new Pay();
     }
+
+
 
     CreditCard cc;
     @Override

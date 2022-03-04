@@ -94,7 +94,9 @@ public class Inventory extends JFrame {
             String[] columns = {"Product_ID", "Brand", "Model", "Price", "Num_Stock", "Cash_Price",
                     "CPU_Socket", "Memory_type", "Form_Factor"};
 
-            Object[][] data = new String[20][9];
+
+
+            Object[][] data = new String[AddToInventory.getRowCount()][9]; // TODO: 20= row, If the row was 9 in db then 9 row should be seen injtable. use getRowCount() @AddToInventory.
             int i = 0;
             while (resultSet.next()) {
                 int Product_ID = resultSet.getInt("Product_ID");

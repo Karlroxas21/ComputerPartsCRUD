@@ -1,3 +1,5 @@
+import com.sun.tools.javac.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -43,6 +45,7 @@ public class EnterPassword extends JFrame{
                         Receipt.paymentType = "Credit Card";
                         CreditCardHistory();
                         JOptionPane.showMessageDialog(null, "Payment done! Thanks for buying");
+
 
 
 

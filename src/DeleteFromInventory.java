@@ -82,7 +82,7 @@ public class DeleteFromInventory extends JFrame{
             String[] columns = {"Product_ID", "Brand", "Model", "Price", "Num_Stock", "Cash_Price",
                     "CPU_Socket", "Memory_type", "Form_Factor"};
 
-            Object[][] data = new String[20][9];
+            Object[][] data = new String[AddToInventory.getRowCount()][9];
             int i = 0;
             while (resultSet.next()) {
                 int Product_ID = resultSet.getInt("Product_ID");

@@ -803,6 +803,8 @@ public class MainGUI extends JFrame implements ActionListener {
 
             }
             if(e.getSource() == payButton){
+
+
                 char pesoSign = '\u20B1';
                 receiptNum++;
 
@@ -1031,6 +1033,8 @@ public class MainGUI extends JFrame implements ActionListener {
 
         }
     }
+
+
 
 
 }
