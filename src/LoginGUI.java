@@ -70,6 +70,7 @@ public class LoginGUI extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    //Get First Name of account logged in
     static public String getAccFName() {
         String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=Credentials";
         String user = "papers";
@@ -96,6 +97,7 @@ public class LoginGUI extends JFrame implements ActionListener {
 
         return name;
     }
+    //Get last name of account logged in
     static public String getAccLName() {
         String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=Credentials";
         String user = "papers";

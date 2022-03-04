@@ -52,8 +52,8 @@ public class DeleteFromInventory extends JFrame{
         buttonsPanel.add(refreshBtn);
 
 
-        tabbedPane.add("Update Mobo", moboDeletePanel);
-        tabbedPane.add("Update CPU", cpuDeletePanel);
+        tabbedPane.add("Motherboard", moboDeletePanel);
+        tabbedPane.add("CPU", cpuDeletePanel);
 
         ActionListener();
 

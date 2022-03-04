@@ -85,6 +85,7 @@ public class MainGUI extends JFrame implements ActionListener {
 
     int QTY;
 
+
     public void addComponents(){
         categoryPanel.add(mouseCategoryBtn);
         categoryPanel.add(kbCategoryBtn);
@@ -372,6 +373,7 @@ public class MainGUI extends JFrame implements ActionListener {
         this.setLayout(null);
         this.setVisible(true);
 
+        //if not manager then the buttons will be not added.
         if(ConnectUserSQL.isManagerAccess()) {
             functionPanel.add(inventoryBtn);
             functionPanel.add(updateBtn);
@@ -386,18 +388,11 @@ public class MainGUI extends JFrame implements ActionListener {
     public void setTotalAmount(int i){
         totalAmount.setText(String.valueOf(i).toString());
     }
+
     public int getPayment(){
         return Integer.parseInt(youPay.getText().toString());
     }
-    public void importFont(){
-        try {
-            GraphicsEnvironment ge =
-                    GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fake receipt.ttf")));
-        } catch (IOException |FontFormatException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     static Inventory inventory;
     static AddToInventory addToInventory;
@@ -416,6 +411,7 @@ public class MainGUI extends JFrame implements ActionListener {
     static int receiptNum = 1000;
     static String cashier = LoginGUI.getAccFName() + " " + LoginGUI.getAccLName();
 
+    //Default string in Receipt
     static StringBuilder receiptSB = new StringBuilder(String.format("**************************************" + "\n"
             + "Computer Parts/Peripherals Point of Sale System" + "\n"
             + "TIN No.: 010-021-930-002"
@@ -430,6 +426,7 @@ public class MainGUI extends JFrame implements ActionListener {
 
     static int price = 0;
     int totalItems = 0;
+
 
     public static int getTotalAmount(){
         return price;
@@ -875,9 +872,7 @@ public class MainGUI extends JFrame implements ActionListener {
     ArrayList<String> model = new ArrayList<>();
 
 
-    public static void setReceiptDescription(String _receipt) {
-       receiptDescription.setText(String.valueOf(receiptSB.append(_receipt).append("\n")));
-    }
+
 
     /* Return the stock number*/
     public static int checkItemStock(int product_id){
@@ -983,7 +978,7 @@ public class MainGUI extends JFrame implements ActionListener {
 
 
 
-
+    //sets the Button text (limited to 15 products only)
     public void setItemPanelName(){
 
         try{
@@ -1030,7 +1025,7 @@ public class MainGUI extends JFrame implements ActionListener {
 
 
         }catch (Exception ex){
-
+            ex.printStackTrace();
         }
     }
 
