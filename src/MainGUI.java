@@ -2,18 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-
 
 public class MainGUI extends JFrame implements ActionListener {
 
     static DBConnect url = DBConnect.URL;
     static DBConnect user = DBConnect.USER;
     static DBConnect pw = DBConnect.PASSWORD;
-
 
     static MainGUI mainGUI;
     private JPanel receiptPanel  = new JPanel();
@@ -23,7 +19,6 @@ public class MainGUI extends JFrame implements ActionListener {
     private JPanel categoryPanel = new JPanel();
     private JPanel qtyPanel = new JPanel();
     private JPanel functionPanel = new JPanel();
-
 
     private JLabel titleCategory = new JLabel("CATEGORY:");
 
@@ -91,7 +86,6 @@ public class MainGUI extends JFrame implements ActionListener {
 
     int QTY;
 
-
     public void addComponents(){
         categoryPanel.add(mouseCategoryBtn);
         categoryPanel.add(kbCategoryBtn);
@@ -121,7 +115,6 @@ public class MainGUI extends JFrame implements ActionListener {
         itemPanel.add(item13);
         itemPanel.add(item14);
         itemPanel.add(item15);
-
 
         functionPanel.add(ordersBtn);
 
@@ -159,7 +152,6 @@ public class MainGUI extends JFrame implements ActionListener {
 
         centerReceiptPanel.add(scrollPane);
 
-
         categoryPanel.add(titleCategory);
 
         receiptPanel.add(payButton);
@@ -185,10 +177,8 @@ public class MainGUI extends JFrame implements ActionListener {
         loggedInTxt.setBounds(0, 640, 195, 50);
         loggedInAs.setBounds(90, 640, 195, 50);
 
-
         northReceiptPanel.setBounds(0,0, 600, 100);
         centerReceiptPanel.setBounds(0, 100, 600, 550);
-
 
         scrollPane.setBounds(0,0,600, 550);
 
@@ -201,14 +191,12 @@ public class MainGUI extends JFrame implements ActionListener {
 
         payButton.setBounds(0, 650, 600, 50);
 
-
     }
     public void setBackground(){
         receiptPanel.setBackground(new Color(0x626060));
         itemPanel.setBackground(new Color(0x626060));
         categoryPanel.setBackground(new Color(0x626060));
         functionPanel.setBackground(new Color(0x626060));
-
 
         checkbox1.setBackground(new Color(0x142d3a));
         checkBox2.setBackground(new Color(0x142d3a));
@@ -221,13 +209,10 @@ public class MainGUI extends JFrame implements ActionListener {
         checkbox9.setBackground(new Color(0x142d3a));
         checkbox10.setBackground(new Color(0x142d3a));
 
-
         northReceiptPanel.setBackground(new Color(0x142d3a));
         centerReceiptPanel.setBackground(Color.green);
 
 //                 qtyPanel.setBackground(new Color(0x626060));
-
-
     }
     public void setLayout(){
         receiptPanel.setLayout(null);
@@ -239,10 +224,6 @@ public class MainGUI extends JFrame implements ActionListener {
         centerReceiptPanel.setLayout(null);
 
         categoryPanel.setLayout(null);
-
-
-
-
 
     }
     public void setForeground(){
@@ -269,8 +250,6 @@ public class MainGUI extends JFrame implements ActionListener {
         exchange.setForeground(new Color(0xFFFFFF));
 
         youPay.setForeground(Color.BLACK);
-
-
 
     }
     public void setFont(){
@@ -329,7 +308,6 @@ public class MainGUI extends JFrame implements ActionListener {
         checkbox10.addActionListener(this);
         payButton.addActionListener(this);
 
-
     }
 
     MainGUI(){
@@ -342,23 +320,16 @@ public class MainGUI extends JFrame implements ActionListener {
         setBorder();
         addActionListener();
 
-
-
-
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         receiptDescription.setLineWrap(true);
 //        receiptDescription.setEditable(false);
 //        setTextReceiptDescription();
 
-        
         setItemPanelName();
-
-
 
         receiptDescription.setFont(new Font("monospaced", Font.PLAIN, 12));
 //        importFont();
-
 
         receiptDescription.setText(String.valueOf(receiptSB));
 
@@ -369,7 +340,6 @@ public class MainGUI extends JFrame implements ActionListener {
         this.add(functionPanel);
 
         receiptDescription.setEditable(false);
-
 
         this.setTitle("Karl Marx Roxas");
         this.getContentPane().setBackground(new Color(0x142d3a));
@@ -387,9 +357,7 @@ public class MainGUI extends JFrame implements ActionListener {
             functionPanel.add(deleteBtn);
         }
 
-
     }
-
 
     public void setTotalAmount(int i){
         totalAmount.setText(String.valueOf(i).toString());
@@ -398,7 +366,6 @@ public class MainGUI extends JFrame implements ActionListener {
     public int getPayment(){
         return Integer.parseInt(youPay.getText().toString());
     }
-
 
     static Inventory inventory;
     static AddToInventory addToInventory;
@@ -432,7 +399,6 @@ public class MainGUI extends JFrame implements ActionListener {
 
     static int price = 0;
     int totalItems = 0;
-
 
     public static int getTotalAmount(){
         return price;
@@ -477,8 +443,6 @@ public class MainGUI extends JFrame implements ActionListener {
 //                receiptDescription.append(String.format("%5s", brand.get(0) + " " + model.get(0)));
 //                receiptDescription.append(String.format("%19d", checkItemPrice(1006)));
 
-
-
             }
             if(e.getSource() == item2){
                 if(QTY != 0) {
@@ -486,7 +450,6 @@ public class MainGUI extends JFrame implements ActionListener {
                         price += checkItemPrice(1001) * QTY;
                         totalItems += QTY;
                         setTotalAmount(price);
-
 
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%15s", brand.get(1) + " " + model.get(1)));
@@ -502,7 +465,6 @@ public class MainGUI extends JFrame implements ActionListener {
 //                receiptDescription.append(String.format("%15s", brand.get(1) + " " + model.get(1)));
 //                receiptDescription.append(String.format("%36d", checkItemPrice(1007)));
 
-
             }
             if(e.getSource() == item3){
                 if(QTY != 0) {
@@ -510,7 +472,6 @@ public class MainGUI extends JFrame implements ActionListener {
                         price += checkItemPrice(1002) * QTY;
                         totalItems += QTY;
                         setTotalAmount(price);
-
 
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%15s", brand.get(2) + " " + model.get(2)));
@@ -534,7 +495,6 @@ public class MainGUI extends JFrame implements ActionListener {
                         totalItems += QTY;
                         setTotalAmount(price);
 
-
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%15s", brand.get(3) + " " + model.get(3)));
                         receiptDescription.append(String.format("%32d", checkItemPrice(1003)));
@@ -549,7 +509,6 @@ public class MainGUI extends JFrame implements ActionListener {
 //                receiptDescription.append(String.format("%15s", brand.get(3) + " " + model.get(3)));
 //                receiptDescription.append(String.format("%32d", checkItemPrice(1003)));
 
-
             }
             if(e.getSource() == item5){
                 if(QTY != 0) {
@@ -557,7 +516,6 @@ public class MainGUI extends JFrame implements ActionListener {
                         price += checkItemPrice(1004) * QTY;
                         totalItems += QTY;
                         setTotalAmount(price);
-
 
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%15s", brand.get(4) + " " + model.get(4)));
@@ -581,7 +539,6 @@ public class MainGUI extends JFrame implements ActionListener {
                         totalItems += QTY;
                         setTotalAmount(price);
 
-
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%15s", brand.get(5) + " " + model.get(5)));
                         receiptDescription.append(String.format("%32s", checkItemPrice(1005)));
@@ -604,7 +561,6 @@ public class MainGUI extends JFrame implements ActionListener {
                         totalItems += QTY;
                         setTotalAmount(price);
 
-
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%15s", brand.get(6) + " " + model.get(6)));
                         receiptDescription.append(String.format("%33s", checkItemPrice(1006)));
@@ -626,7 +582,6 @@ public class MainGUI extends JFrame implements ActionListener {
                         price += checkItemPrice(1007) * QTY;
                         totalItems += QTY;
                         setTotalAmount(price);
-
 
                         receiptDescription.append(String.format("\n" + "%-9s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%15s", brand.get(7) + " " + model.get(7)));
@@ -664,7 +619,6 @@ public class MainGUI extends JFrame implements ActionListener {
 //                receiptDescription.append(String.format("%15s", brand.get(8) + " " + model.get(8)));
 //                receiptDescription.append(String.format("%25d", checkItemPrice(1008)));
 
-
             }
             if(e.getSource() == item10){
                 if(QTY != 0) {
@@ -672,7 +626,6 @@ public class MainGUI extends JFrame implements ActionListener {
                         price += checkItemPrice(1009) * QTY;
                         totalItems += QTY;
                         setTotalAmount(price);
-
 
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%15s", brand.get(9) + " " + model.get(9)));
@@ -688,7 +641,6 @@ public class MainGUI extends JFrame implements ActionListener {
 //                receiptDescription.append(String.format("%15s", brand.get(9) + " " + model.get(9)));
 //                receiptDescription.append(String.format("%32d", checkItemPrice(1009)));
 
-
             }
             if(e.getSource() == item11){
                 if(QTY != 0) {
@@ -696,7 +648,6 @@ public class MainGUI extends JFrame implements ActionListener {
                         price += checkItemPrice(1010) * QTY;
                         totalItems += QTY;
                         setTotalAmount(price);
-
 
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%15s", brand.get(10) + " " + model.get(10)));
@@ -720,7 +671,6 @@ public class MainGUI extends JFrame implements ActionListener {
                         totalItems += QTY;
                         setTotalAmount(price);
 
-
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%15s", brand.get(11) + " " + model.get(11)));
                         receiptDescription.append(String.format("%25d", checkItemPrice(1011)));
@@ -734,7 +684,6 @@ public class MainGUI extends JFrame implements ActionListener {
 //                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
 //                receiptDescription.append(String.format("%15s", brand.get(11) + " " + model.get(11)));
 //                receiptDescription.append(String.format("%25d", checkItemPrice(1011)));
-
             }
             if(e.getSource() == item13){
                 if(QTY != 0) {
@@ -742,7 +691,6 @@ public class MainGUI extends JFrame implements ActionListener {
                         price += checkItemPrice(1012) * QTY;
                         totalItems += QTY;
                         setTotalAmount(price);
-
 
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%15s", brand.get(12) + " " + model.get(12)));
@@ -766,7 +714,6 @@ public class MainGUI extends JFrame implements ActionListener {
                         totalItems += QTY;
                         setTotalAmount(price);
 
-
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%13s", brand.get(13) + " " + model.get(13)));
                         receiptDescription.append(String.format("%39d", checkItemPrice(1013)));
@@ -789,7 +736,6 @@ public class MainGUI extends JFrame implements ActionListener {
                         totalItems += QTY;
                         setTotalAmount(price);
 
-
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%13s", brand.get(14) + " " + model.get(14)));
                         receiptDescription.append(String.format("%33d", checkItemPrice(1014)));
@@ -806,7 +752,6 @@ public class MainGUI extends JFrame implements ActionListener {
 
             }
             if(e.getSource() == payButton){
-
 
                 char pesoSign = '\u20B1';
                 receiptNum++;
@@ -830,14 +775,7 @@ public class MainGUI extends JFrame implements ActionListener {
                 receiptDescription.append(String.format("%80s", "Receipt Number    :  "));
                 receiptDescription.append(String.format("%3d", receiptNum)); //TODO: the receipt num should be located at database!
 
-
-
-
-
-
-
                 pay = new Pay();
-
 
             }
             if(e.getSource() == checkbox1){
@@ -873,12 +811,8 @@ public class MainGUI extends JFrame implements ActionListener {
 
     }
 
-
     ArrayList<String> brand = new ArrayList<>();
     ArrayList<String> model = new ArrayList<>();
-
-
-
 
     /* Return the stock number*/
     public static int checkItemStock(int product_id){
@@ -895,7 +829,6 @@ public class MainGUI extends JFrame implements ActionListener {
                 num_Stock = resultSet.getInt("Num_Stock");
                 return  num_Stock;
             }
-
 
         }catch (Exception ex){
 
@@ -932,7 +865,6 @@ public class MainGUI extends JFrame implements ActionListener {
                     ps.close();
 
                     return updateStock;
-
                 }
             }
             preparedStatement.close();
@@ -941,7 +873,6 @@ public class MainGUI extends JFrame implements ActionListener {
         }catch (Exception ex){
             ex.printStackTrace();
         }
-
         return 0;
     }
 
@@ -961,19 +892,12 @@ public class MainGUI extends JFrame implements ActionListener {
                 return  Price;
             }
 
-
         }catch (Exception ex){
             ex.printStackTrace();
         }
 
         return 0;
     }
-
-
-
-
-
-
 
     //sets the Button text (limited to 15 products only)
     public void setItemPanelName(){
@@ -1000,6 +924,7 @@ public class MainGUI extends JFrame implements ActionListener {
 
             resultSet.close();
 
+            //Para lagyan ng product name sa button natin na galing sa Database
             item1.setText("<html><center>"+brand.get(0)+"<br>"+model.get(0)+"</center></html>");
             item2.setText("<html><center>"+brand.get(1)+"<br>"+model.get(1)+"</center></html>");
             item3.setText("<html><center>"+brand.get(2)+"<br>"+model.get(2)+"</center></html>");
@@ -1016,13 +941,9 @@ public class MainGUI extends JFrame implements ActionListener {
             item14.setText("<html><center>"+brand.get(12)+"<br>"+model.get(13)+"</center></html>");
             item15.setText("<html><center>"+brand.get(12)+"<br>"+model.get(14)+"</center></html>");
 
-
         }catch (Exception ex){
             ex.printStackTrace();
         }
     }
-
-
-
 
 }

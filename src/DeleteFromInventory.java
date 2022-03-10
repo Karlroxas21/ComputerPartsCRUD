@@ -29,7 +29,6 @@ public class DeleteFromInventory extends JFrame{
     private JLabel productID = new JLabel("Product ID: ");
     private JTextField productID_TF = new JTextField();
 
-
     DeleteFromInventory(){
         this.setLayout(new BorderLayout());
 
@@ -61,7 +60,6 @@ public class DeleteFromInventory extends JFrame{
 
         ActionListener();
 
-
         this.add(buttonsPanel, BorderLayout.SOUTH);
         this.add(tabbedPane, BorderLayout.CENTER);
         this.setTitle("Delete Items in Inventory");
@@ -70,10 +68,9 @@ public class DeleteFromInventory extends JFrame{
         this.setVisible(true);
 
     }
-
+    //Mobo table
     public void setMoboTable(){
         try{
-
             Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "SELECT * FROM MOBO";
             Statement statement = connection.createStatement();
@@ -131,6 +128,7 @@ public class DeleteFromInventory extends JFrame{
                 deleteMobo();
             }
         });
+
         backBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -138,9 +136,9 @@ public class DeleteFromInventory extends JFrame{
             }
         });
     }
+    //Delete mobo product
     public void deleteMobo(){
         try{
-
             Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "DELETE MOBO where Product_ID = ?";
 
@@ -158,7 +156,6 @@ public class DeleteFromInventory extends JFrame{
             ex.printStackTrace();
         }
     }
-
 
     public static void main(String[] args) {
         new DeleteFromInventory();

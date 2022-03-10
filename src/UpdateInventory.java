@@ -39,10 +39,6 @@ public class UpdateInventory extends JFrame {
     private JLabel cashPrice_Lbl = new JLabel("Update Cash Price: ");
     private JTextField cashPrice_TF = new JTextField();
 
-
-
-
-
     UpdateInventory(){
         this.setLayout(new BorderLayout());
 
@@ -73,12 +69,10 @@ public class UpdateInventory extends JFrame {
         buttonsPanel.add(updateBtn);
         buttonsPanel.add(refreshBtn);
 
-
         tabbedPane.add("Update Mobo", moboUpdatePanel);
         tabbedPane.add("Update CPU", cpuUpdatePanel);
 
         ActionListener();
-
 
         this.add(buttonsPanel, BorderLayout.SOUTH);
         this.add(tabbedPane, BorderLayout.CENTER);
@@ -89,10 +83,9 @@ public class UpdateInventory extends JFrame {
 
     }
 
+    //Set table from database to JFrame
     public void setMoboTable(){
         try{
-
-
 
             Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "SELECT * FROM MOBO";
@@ -167,13 +160,12 @@ public class UpdateInventory extends JFrame {
             }
         });
     }
+    //Iuupdate yung price ng mobo product
     public void updateMoboPrice(){
         try{
-            String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
-            String user = "papers";
-            String password = "papersarewhite";
 
-            Connection connection = DriverManager.getConnection(url, user, password);
+
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "UPDATE MOBO set Price= ? where Product_ID = ?";
 
             PreparedStatement statement = connection.prepareStatement(QUERY);
@@ -192,13 +184,12 @@ public class UpdateInventory extends JFrame {
             ex.printStackTrace();
         }
     }
+
+    //Iuupdate yung stock ng mobo
     public void updateMoboStock(){
         try{
-            String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
-            String user = "papers";
-            String password = "papersarewhite";
 
-            Connection connection = DriverManager.getConnection(url, user, password);
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "UPDATE MOBO set Num_Stock= ? where Product_ID = ?";
 
             PreparedStatement statement = connection.prepareStatement(QUERY);
@@ -217,9 +208,10 @@ public class UpdateInventory extends JFrame {
             ex.printStackTrace();
         }
     }
+
+    //Iuupdate yung cash price ng mobo
     public void updateCashPrice(){
         try{
-
 
             Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "UPDATE MOBO set Cash_Price= ? where Product_ID = ?";

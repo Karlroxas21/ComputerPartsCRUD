@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//Eto yung window na lalabas kapag mamimili ka ng Payment Type
 public class Pay extends JFrame implements  ActionListener{
     private JPanel mainPanel = new JPanel();
 
@@ -12,16 +13,12 @@ public class Pay extends JFrame implements  ActionListener{
 
     static boolean isPaymentSuccess = false;
 
-
     Pay(){
         mainPanel.setLayout(new GridLayout(1, 3));
-
-
 
         mainPanel.add(creditCard);
         mainPanel.add(debitCard);
         mainPanel.add(cash);
-
 
         creditCard.setFocusable(false);
         debitCard.setFocusable(false);
@@ -31,11 +28,7 @@ public class Pay extends JFrame implements  ActionListener{
         debitCard.addActionListener(this);
         cash.addActionListener(this);
 
-
-
-
         this.add(mainPanel, BorderLayout.CENTER);
-
 
         this.setTitle("Payment Type");
         this.setSize(800, 500);
@@ -47,8 +40,6 @@ public class Pay extends JFrame implements  ActionListener{
     public static void main(String[] args) {
         new Pay();
     }
-
-
 
     CreditCard cc;
     @Override

@@ -7,12 +7,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-
 public class LoginGUI extends JFrame implements ActionListener {
     static DBConnect url = DBConnect.URL;
     static DBConnect user = DBConnect.USER;
     static DBConnect pw = DBConnect.PASSWORD;
-
 
     public static String account_access = "";
     public static boolean isAuthorized = false;
@@ -24,9 +22,6 @@ public class LoginGUI extends JFrame implements ActionListener {
     private JLabel pwLabel = new JLabel("Password");
     private static JLabel message = new JLabel("TEST MESSAGE");
 
-
-
-
     static char[]  Password(){
         return password.getPassword();
     }
@@ -37,7 +32,7 @@ public class LoginGUI extends JFrame implements ActionListener {
         return username.getText();
     }
 
-     static void setMessage(String s){
+    static void setMessage(String s){
         message.setText(s);
     }
 
@@ -47,8 +42,6 @@ public class LoginGUI extends JFrame implements ActionListener {
     static String getInputPassword(){
         return new String(Password());
     }
-
-
 
     LoginGUI() {
 
@@ -120,11 +113,8 @@ public class LoginGUI extends JFrame implements ActionListener {
             ex.printStackTrace();
         }
 
-
         return LName;
     }
-
-
 
     public static void main(String[] args) {
         new LoginGUI();
@@ -142,6 +132,5 @@ public class LoginGUI extends JFrame implements ActionListener {
 
         }
     }
-
 
 }

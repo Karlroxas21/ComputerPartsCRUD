@@ -1,10 +1,9 @@
 import javax.swing.*;
-import javax.swing.plaf.nimbus.State;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
-import java.util.concurrent.ExecutionException;
+
 
 public class AddToInventory extends JFrame {
     static DBConnect url = DBConnect.URL;
@@ -69,8 +68,6 @@ public class AddToInventory extends JFrame {
         moboAddPanel.add(form_Factor);
         moboAddPanel.add(form_FactorTF);
 
-
-
         tabbedPane.add("Add MOBO", moboAddPanel);
         tabbedPane.add("Add CPU", cpuAddPanel);
 
@@ -87,10 +84,10 @@ public class AddToInventory extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
     }
+
+    //Insert data to sql
     public void insertToSQL(){
         try{
-
-
             Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
 
             String QUERY = "INSERT INTO MOBO(Brand, Model, Price, Num_Stock, Cash_Price, CPU_Socket, Memory_type, Form_Factor)" +
@@ -121,7 +118,6 @@ public class AddToInventory extends JFrame {
 
             statement.close();
 
-
         }catch(Exception ex){
             ex.printStackTrace();
         }
@@ -132,6 +128,7 @@ public class AddToInventory extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                //Our product can only handle 15 Products. If >15 then hindi tayo makakapag add.
                 if(getRowCount() <= 15){
                     insertToSQL();
                 }else if(getRowCount() > 15){
@@ -149,6 +146,7 @@ public class AddToInventory extends JFrame {
                 form_FactorTF.setText("");
             }
         });
+
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -157,6 +155,7 @@ public class AddToInventory extends JFrame {
         });
     }
 
+    //Return the number of row in Database sa MOBO na table
     public static int getRowCount(){
         int count = 0;
 

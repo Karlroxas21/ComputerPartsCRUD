@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.sql.*;
 
 public class ConnectUserSQL {
+    //Kung true, edi manager access ka.
     private static boolean managerAccess;
 
     public static void setManagerAccess(boolean managerAccess) {
@@ -15,10 +16,8 @@ public class ConnectUserSQL {
     static DBConnect user = DBConnect.USER;
     static DBConnect pw = DBConnect.PASSWORD;
 
-
+    //Connect to DB pos_account table
     public static void correctUserSQL(){
-
-
 
         try
         {
@@ -29,11 +28,11 @@ public class ConnectUserSQL {
             preparedStatement.setString(2, LoginGUI.getInputPassword());
             ResultSet resultSet = preparedStatement.executeQuery();
 
-
             if(resultSet.next()){
                 LoginGUI.account_access = resultSet.getString("account_access");
                 LoginGUI.isAuthorized = true;
                 LoginGUI.setMessage("Logged in");
+                //If manager access ka edi may access ka sa 4buttons. (INVENTORY, UPDATE, DELETE, ADD)
                 if(LoginGUI.account_access.equals("manager")){
                     setManagerAccess(true);
                     JOptionPane.showMessageDialog(null, "You logged in as Manager");
@@ -41,6 +40,7 @@ public class ConnectUserSQL {
                     JOptionPane.showMessageDialog(null, "You logged in as Employee");
                 }
             }
+            //Kapag mali pw at user edi error!
             else{
                 LoginGUI.setMessage("Error");
                 JOptionPane.showMessageDialog(null, "Username and Password not matched");

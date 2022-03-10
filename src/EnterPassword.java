@@ -1,11 +1,8 @@
-import com.sun.tools.javac.Main;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
-import java.util.concurrent.ExecutionException;
 
 public class EnterPassword extends JFrame{
 
@@ -33,8 +30,6 @@ public class EnterPassword extends JFrame{
         panel1.add(enterCCPassword);
         panel1.add(proceed);
 
-
-
         proceed.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,9 +45,6 @@ public class EnterPassword extends JFrame{
                         CreditCardHistory();
                         JOptionPane.showMessageDialog(null, "Payment done! Thanks for buying");
 
-
-
-
                         receipt = new Receipt();
 
                         MainGUI.receiptDescription.setText(String.valueOf(MainGUI.receiptSB).toString());
@@ -60,9 +52,6 @@ public class EnterPassword extends JFrame{
                     } else
                         JOptionPane.showMessageDialog(null, "Your limit is " + CreditCard.checkCreditBalance(CreditCard.getCC_Num()) + " and you will pay " + MainGUI.getTotalAmount());
                 }
-
-
-
             }
         });
 
@@ -75,8 +64,6 @@ public class EnterPassword extends JFrame{
             }
         });
 
-
-
         this.setResizable(false);
         this.add(panel1, BorderLayout.CENTER);
         this.setTitle("Enter your password");
@@ -86,12 +73,16 @@ public class EnterPassword extends JFrame{
         this.setVisible(true);
     }
 
+    //Kukunin yung password na inenter mo
     static char[]  Password(){
         return enterCCPassword.getPassword();
     }
+    //Cinast lang sa String yung method na Password
     static String getInputPassword(){
         return new String(Password());
     }
+
+    //Kukunin yung tamang password sa database
     static public String getPasswordCC() {
         String pw_cc = "";
 
@@ -114,10 +105,10 @@ public class EnterPassword extends JFrame{
             ex.printStackTrace();
         }
 
-
         return pw_cc;
     }
 
+    //Check if the password ay tama
     static public boolean isPasswordMatch(){
         if(!getInputPassword().equals(getPasswordCC())){
             return false;
@@ -125,6 +116,7 @@ public class EnterPassword extends JFrame{
             return true;
     }
 
+    //Insert data sa History. Yung mga pinag-gagastos mo!
     static void CreditCardHistory(){
         try{
             Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
@@ -140,22 +132,15 @@ public class EnterPassword extends JFrame{
 
             preparedStatement.execute();
 
-
             preparedStatement.close();
-
-
 
         }catch (Exception ex){
             ex.printStackTrace();
         }
     }
 
-
-
-
     public static void main(String[] args) {
         new EnterPassword();
-
 
     }
 }

@@ -10,7 +10,6 @@ public class Receipt extends JFrame implements  ActionListener{
 
     static String paymentType = "";
 
-
     Receipt(){
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -37,8 +36,6 @@ public class Receipt extends JFrame implements  ActionListener{
 
         exit.addActionListener(this);
 
-
-
     }
 
     public static void main(String[] args) {
@@ -52,5 +49,3 @@ public class Receipt extends JFrame implements  ActionListener{
         }
     }
 }
-
-//TODO: ADD RECEIPT IN DATABASE

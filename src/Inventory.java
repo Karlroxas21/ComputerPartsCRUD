@@ -8,12 +8,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-
 public class Inventory extends JFrame {
     static DBConnect url = DBConnect.URL;
     static DBConnect user = DBConnect.USER;
     static DBConnect pw = DBConnect.PASSWORD;
-
 
     JButton backButton = new JButton("Back");
 
@@ -27,15 +25,11 @@ public class Inventory extends JFrame {
 
     DefaultTableModel moboDTM;
 
-
-
-
-
     Inventory(){
 
         setLayout(new BorderLayout());
 
-
+        //Temporary kasi wala pa tayong cpu products
         cpuTable.setModel(new DefaultTableModel(
                 new Object[][]{
                         {null, null, null, null, null, null, null, null, null, null, null, null},
@@ -62,7 +56,6 @@ public class Inventory extends JFrame {
         moboPanel.setLayout(new CardLayout());
         moboPanel.add(scrollpane1);
 
-
         scrollpane2.setViewportView(cpuTable);
         cpuPanel.add(scrollpane2);
 
@@ -79,10 +72,7 @@ public class Inventory extends JFrame {
         this.setVisible(true);
     }
 
-
-
-
-
+    //Display table sa System natin galing sa DB
     public void setMoboTable(){
         try{
 
@@ -93,8 +83,6 @@ public class Inventory extends JFrame {
 
             String[] columns = {"Product_ID", "Brand", "Model", "Price", "Num_Stock", "Cash_Price",
                     "CPU_Socket", "Memory_type", "Form_Factor"};
-
-
 
             Object[][] data = new String[AddToInventory.getRowCount()][9];
             int i = 0;

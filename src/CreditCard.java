@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Locale;
 
 public class CreditCard extends JFrame implements ActionListener {
 
@@ -35,7 +34,6 @@ public class CreditCard extends JFrame implements ActionListener {
         button.setFocusable(false);
         enterCcNum.setLineWrap(true);
 
-
         this.setResizable(false);
         this.add(panel, BorderLayout.CENTER);
         this.setTitle("Credit Card");
@@ -50,13 +48,13 @@ public class CreditCard extends JFrame implements ActionListener {
         new CreditCard();
     }
 
+    //Kukunin yung inenter mo na Credit Card Number
     static public int getCC_Num(){
         return Integer.parseInt(enterCcNum.getText().toString());
     }
     Receipt receipt;
     Pay pay;
     EnterPassword enterPassword;
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -65,6 +63,7 @@ public class CreditCard extends JFrame implements ActionListener {
             this.dispose();
         }
         if(e.getSource() == button) {
+            //Kapag hindi valid edi hindi ka makakapag bayad.
             if (isCCNumValid(getCC_Num())) {
                 enterPassword = new EnterPassword();
                 this.dispose();
@@ -72,7 +71,6 @@ public class CreditCard extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Credit Card Number Not Valid!");
 
         }
-
     }
     public static int checkCreditBalance(int CC_ID){
 
@@ -96,7 +94,7 @@ public class CreditCard extends JFrame implements ActionListener {
         }
        return 0;
     }
-
+    //Isa-subtract dito yung amount spent - Credit Limit
     public static void minusCCBalance(int CC_ID, int amountSpent){
 
         try {
@@ -114,14 +112,13 @@ public class CreditCard extends JFrame implements ActionListener {
 
             preparedStatement.close();
 
-
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
     }
 
+    //Iche-check kung valid ba yung Credit Card Number na inenter mo
     public static boolean isCCNumValid(int CC_ID){
         int ccID = 0;
 
@@ -147,9 +144,4 @@ public class CreditCard extends JFrame implements ActionListener {
         return false;
 
     }
-
-
-
-
-
     }
