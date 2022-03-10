@@ -465,7 +465,7 @@ public class MainGUI extends JFrame implements ActionListener {
 
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%5s", brand.get(0) + " " + model.get(0)));
-                        receiptDescription.append(String.format("%19d", checkItemPrice(1006))); 
+                        receiptDescription.append(String.format("%19d", checkItemPrice(1000)));
                         minusItemStock(1000, QTY);
                         resetButtonGroup();
                     }else
