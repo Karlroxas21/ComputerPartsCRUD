@@ -6,6 +6,11 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class UpdateInventory extends JFrame {
+
+    static DBConnect url = DBConnect.URL;
+    static DBConnect user = DBConnect.USER;
+    static DBConnect pw = DBConnect.PASSWORD;
+
     private JButton backBtn = new JButton("Back");
     private JButton updateBtn = new JButton("Update");
     private JButton refreshBtn = new JButton("Refresh");
@@ -87,11 +92,9 @@ public class UpdateInventory extends JFrame {
     public void setMoboTable(){
         try{
 
-            String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
-            String user = "papers";
-            String password = "papersarewhite";
 
-            Connection connection = DriverManager.getConnection(url, user, password);
+
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "SELECT * FROM MOBO";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(QUERY);
@@ -216,11 +219,9 @@ public class UpdateInventory extends JFrame {
     }
     public void updateCashPrice(){
         try{
-            String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
-            String user = "papers";
-            String password = "papersarewhite";
 
-            Connection connection = DriverManager.getConnection(url, user, password);
+
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "UPDATE MOBO set Cash_Price= ? where Product_ID = ?";
 
             PreparedStatement statement = connection.prepareStatement(QUERY);

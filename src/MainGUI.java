@@ -458,18 +458,18 @@ public class MainGUI extends JFrame implements ActionListener {
             if(e.getSource() == item1){
 
                 if(QTY != 0) {
-                    if(QTY <= checkItemStock(1006)) {
-                        price += checkItemPrice(1006) * QTY;
+                    if(QTY <= checkItemStock(1000)) {
+                        price += checkItemPrice(1000) * QTY;
                         totalItems += QTY;
                         setTotalAmount(price);
 
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%5s", brand.get(0) + " " + model.get(0)));
-                        receiptDescription.append(String.format("%19d", checkItemPrice(1006)));
-                        minusItemStock(1006, QTY);
+                        receiptDescription.append(String.format("%19d", checkItemPrice(1006))); 
+                        minusItemStock(1000, QTY);
                         resetButtonGroup();
                     }else
-                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1006) + " Stock");
+                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1000) + " Stock");
                 }else{
                     JOptionPane.showMessageDialog(null, "Choose QTY ");
                 }
@@ -482,19 +482,19 @@ public class MainGUI extends JFrame implements ActionListener {
             }
             if(e.getSource() == item2){
                 if(QTY != 0) {
-                    if(QTY <= checkItemStock(1007)) {
-                        price += checkItemPrice(1007) * QTY;
+                    if(QTY <= checkItemStock(1001)) {
+                        price += checkItemPrice(1001) * QTY;
                         totalItems += QTY;
                         setTotalAmount(price);
 
 
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%15s", brand.get(1) + " " + model.get(1)));
-                        receiptDescription.append(String.format("%36d", checkItemPrice(1007)));
-                        minusItemStock(1007, QTY);
+                        receiptDescription.append(String.format("%36d", checkItemPrice(1001)));
+                        minusItemStock(1001, QTY);
                         resetButtonGroup();
                     }else
-                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1007) + " Stock");
+                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1001) + " Stock");
                 }else{
                     JOptionPane.showMessageDialog(null, "Choose QTY ");
                 }
@@ -506,15 +506,153 @@ public class MainGUI extends JFrame implements ActionListener {
             }
             if(e.getSource() == item3){
                 if(QTY != 0) {
-                    if(QTY <= checkItemStock(1008)) {
-                        price += checkItemPrice(1008) * QTY;
+                    if(QTY <= checkItemStock(1002)) {
+                        price += checkItemPrice(1002) * QTY;
                         totalItems += QTY;
                         setTotalAmount(price);
 
 
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
                         receiptDescription.append(String.format("%15s", brand.get(2) + " " + model.get(2)));
-                        receiptDescription.append(String.format("%32d", checkItemPrice(1008)));
+                        receiptDescription.append(String.format("%32d", checkItemPrice(1002)));
+                        minusItemStock(1002, QTY);
+                        resetButtonGroup();
+                    }else
+                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1002) + " Stock");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Choose QTY ");
+                }
+//                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
+//                receiptDescription.append(String.format("%15s", brand.get(2) + " " + model.get(2)));
+//                receiptDescription.append(String.format("%32d", checkItemPrice(1002)));
+
+            }
+            if(e.getSource() == item4){
+                if(QTY != 0) {
+                    if(QTY <= checkItemStock(1003)) {
+                        price += checkItemPrice(1003) * QTY;
+                        totalItems += QTY;
+                        setTotalAmount(price);
+
+
+                        receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
+                        receiptDescription.append(String.format("%15s", brand.get(3) + " " + model.get(3)));
+                        receiptDescription.append(String.format("%32d", checkItemPrice(1003)));
+                        minusItemStock(1003, QTY);
+                        resetButtonGroup();
+                    }else
+                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1003) + " Stock");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Choose QTY ");
+                }
+//                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
+//                receiptDescription.append(String.format("%15s", brand.get(3) + " " + model.get(3)));
+//                receiptDescription.append(String.format("%32d", checkItemPrice(1003)));
+
+
+            }
+            if(e.getSource() == item5){
+                if(QTY != 0) {
+                    if(QTY <= checkItemStock(1004)) {
+                        price += checkItemPrice(1004) * QTY;
+                        totalItems += QTY;
+                        setTotalAmount(price);
+
+
+                        receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
+                        receiptDescription.append(String.format("%15s", brand.get(4) + " " + model.get(4)));
+                        receiptDescription.append(String.format("%28s", checkItemPrice(1004)));
+                        minusItemStock(1004, QTY);
+                        resetButtonGroup();
+                    }else
+                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1004) + " Stock");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Choose QTY ");
+                }
+//                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
+//                receiptDescription.append(String.format("%15s", brand.get(4) + " " + model.get(4)));
+//                receiptDescription.append(String.format("%28s", checkItemPrice(1004)));
+
+            }
+            if(e.getSource() == item6){
+                if(QTY != 0) {
+                    if(QTY <= checkItemStock(1005)) {
+                        price += checkItemPrice(1005) * QTY;
+                        totalItems += QTY;
+                        setTotalAmount(price);
+
+
+                        receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
+                        receiptDescription.append(String.format("%15s", brand.get(5) + " " + model.get(5)));
+                        receiptDescription.append(String.format("%32s", checkItemPrice(1005)));
+                        minusItemStock(1005, QTY);
+                        resetButtonGroup();
+                    }else
+                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1005) + " Stock");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Choose QTY ");
+                }
+//                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
+//                receiptDescription.append(String.format("%15s", brand.get(5) + " " + model.get(5)));
+//                receiptDescription.append(String.format("%32s", checkItemPrice(1005)));
+
+            }
+            if(e.getSource() == item7){
+                if(QTY != 0) {
+                    if(QTY <= checkItemStock(1006)) {
+                        price += checkItemPrice(1006) * QTY;
+                        totalItems += QTY;
+                        setTotalAmount(price);
+
+
+                        receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
+                        receiptDescription.append(String.format("%15s", brand.get(6) + " " + model.get(6)));
+                        receiptDescription.append(String.format("%33s", checkItemPrice(1006)));
+                        minusItemStock(1006, QTY);
+                        resetButtonGroup();
+                    }else
+                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1006) + " Stock");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Choose QTY ");
+                }
+//                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
+//                receiptDescription.append(String.format("%15s", brand.get(6) + " " + model.get(6)));
+//                receiptDescription.append(String.format("%33s", checkItemPrice(1006)));
+
+            }
+            if(e.getSource() == item8){
+                if(QTY != 0) {
+                    if(QTY <= checkItemStock(1007)) {
+                        price += checkItemPrice(1007) * QTY;
+                        totalItems += QTY;
+                        setTotalAmount(price);
+
+
+                        receiptDescription.append(String.format("\n" + "%-9s", String.valueOf(QTY)));
+                        receiptDescription.append(String.format("%15s", brand.get(7) + " " + model.get(7)));
+                        receiptDescription.append(String.format("%37s", checkItemPrice(1007)));
+                        minusItemStock(1007, QTY);
+                        resetButtonGroup();
+                    }else
+                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1007) + " Stock");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Choose QTY ");
+                }
+//                receiptDescription.append(String.format("\n" + "%-9s", String.valueOf(QTY)));
+//                receiptDescription.append(String.format("%15s", brand.get(7) + " " + model.get(7)));
+//                receiptDescription.append(String.format("%37s", checkItemPrice(1007)));
+
+            }
+            if(e.getSource() == item9){
+                if(QTY != 0) {
+                    if(QTY <= checkItemStock(1008)) {
+                        price += checkItemPrice(1008) * QTY;
+                        totalItems += QTY;
+                        setTotalAmount(price);
+
+                        receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
+                        receiptDescription.append(String.format("%15s", brand.get(8) + " " + model.get(8)));
+                        receiptDescription.append(String.format("%25d", checkItemPrice(1008)));
                         minusItemStock(1008, QTY);
                         resetButtonGroup();
                     }else
@@ -523,11 +661,12 @@ public class MainGUI extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Choose QTY ");
                 }
 //                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-//                receiptDescription.append(String.format("%15s", brand.get(2) + " " + model.get(2)));
-//                receiptDescription.append(String.format("%32d", checkItemPrice(1008)));
+//                receiptDescription.append(String.format("%15s", brand.get(8) + " " + model.get(8)));
+//                receiptDescription.append(String.format("%25d", checkItemPrice(1008)));
+
 
             }
-            if(e.getSource() == item4){
+            if(e.getSource() == item10){
                 if(QTY != 0) {
                     if(QTY <= checkItemStock(1009)) {
                         price += checkItemPrice(1009) * QTY;
@@ -536,7 +675,7 @@ public class MainGUI extends JFrame implements ActionListener {
 
 
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-                        receiptDescription.append(String.format("%15s", brand.get(3) + " " + model.get(3)));
+                        receiptDescription.append(String.format("%15s", brand.get(9) + " " + model.get(9)));
                         receiptDescription.append(String.format("%32d", checkItemPrice(1009)));
                         minusItemStock(1009, QTY);
                         resetButtonGroup();
@@ -546,12 +685,12 @@ public class MainGUI extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Choose QTY ");
                 }
 //                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-//                receiptDescription.append(String.format("%15s", brand.get(3) + " " + model.get(3)));
+//                receiptDescription.append(String.format("%15s", brand.get(9) + " " + model.get(9)));
 //                receiptDescription.append(String.format("%32d", checkItemPrice(1009)));
 
 
             }
-            if(e.getSource() == item5){
+            if(e.getSource() == item11){
                 if(QTY != 0) {
                     if(QTY <= checkItemStock(1010)) {
                         price += checkItemPrice(1010) * QTY;
@@ -560,8 +699,8 @@ public class MainGUI extends JFrame implements ActionListener {
 
 
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-                        receiptDescription.append(String.format("%15s", brand.get(4) + " " + model.get(4)));
-                        receiptDescription.append(String.format("%28s", checkItemPrice(1010)));
+                        receiptDescription.append(String.format("%15s", brand.get(10) + " " + model.get(10)));
+                        receiptDescription.append(String.format("%16d", checkItemPrice(1010)));
                         minusItemStock(1010, QTY);
                         resetButtonGroup();
                     }else
@@ -570,11 +709,11 @@ public class MainGUI extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Choose QTY ");
                 }
 //                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-//                receiptDescription.append(String.format("%15s", brand.get(4) + " " + model.get(4)));
-//                receiptDescription.append(String.format("%28s", checkItemPrice(1010)));
+//                receiptDescription.append(String.format("%15s", brand.get(10) + " " + model.get(10)));
+//                receiptDescription.append(String.format("%16d", checkItemPrice(1010)));
 
             }
-            if(e.getSource() == item6){
+            if(e.getSource() == item12){
                 if(QTY != 0) {
                     if(QTY <= checkItemStock(1011)) {
                         price += checkItemPrice(1011) * QTY;
@@ -583,8 +722,8 @@ public class MainGUI extends JFrame implements ActionListener {
 
 
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-                        receiptDescription.append(String.format("%15s", brand.get(5) + " " + model.get(5)));
-                        receiptDescription.append(String.format("%32s", checkItemPrice(1011)));
+                        receiptDescription.append(String.format("%15s", brand.get(11) + " " + model.get(11)));
+                        receiptDescription.append(String.format("%25d", checkItemPrice(1011)));
                         minusItemStock(1011, QTY);
                         resetButtonGroup();
                     }else
@@ -593,11 +732,11 @@ public class MainGUI extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Choose QTY ");
                 }
 //                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-//                receiptDescription.append(String.format("%15s", brand.get(5) + " " + model.get(5)));
-//                receiptDescription.append(String.format("%32s", checkItemPrice(1011)));
+//                receiptDescription.append(String.format("%15s", brand.get(11) + " " + model.get(11)));
+//                receiptDescription.append(String.format("%25d", checkItemPrice(1011)));
 
             }
-            if(e.getSource() == item7){
+            if(e.getSource() == item13){
                 if(QTY != 0) {
                     if(QTY <= checkItemStock(1012)) {
                         price += checkItemPrice(1012) * QTY;
@@ -606,8 +745,8 @@ public class MainGUI extends JFrame implements ActionListener {
 
 
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-                        receiptDescription.append(String.format("%15s", brand.get(6) + " " + model.get(6)));
-                        receiptDescription.append(String.format("%33s", checkItemPrice(1012)));
+                        receiptDescription.append(String.format("%15s", brand.get(12) + " " + model.get(12)));
+                        receiptDescription.append(String.format("%36d", checkItemPrice(1012)));
                         minusItemStock(1012, QTY);
                         resetButtonGroup();
                     }else
@@ -615,12 +754,12 @@ public class MainGUI extends JFrame implements ActionListener {
                 }else{
                     JOptionPane.showMessageDialog(null, "Choose QTY ");
                 }
-//                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-//                receiptDescription.append(String.format("%15s", brand.get(6) + " " + model.get(6)));
-//                receiptDescription.append(String.format("%33s", checkItemPrice(1012)));
+                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
+                receiptDescription.append(String.format("%15s", brand.get(12) + " " + model.get(12)));
+                receiptDescription.append(String.format("%36d", checkItemPrice(1012)));
 
             }
-            if(e.getSource() == item8){
+            if(e.getSource() == item14){
                 if(QTY != 0) {
                     if(QTY <= checkItemStock(1013)) {
                         price += checkItemPrice(1013) * QTY;
@@ -628,9 +767,9 @@ public class MainGUI extends JFrame implements ActionListener {
                         setTotalAmount(price);
 
 
-                        receiptDescription.append(String.format("\n" + "%-9s", String.valueOf(QTY)));
-                        receiptDescription.append(String.format("%15s", brand.get(7) + " " + model.get(7)));
-                        receiptDescription.append(String.format("%37s", checkItemPrice(1013)));
+                        receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
+                        receiptDescription.append(String.format("%13s", brand.get(13) + " " + model.get(13)));
+                        receiptDescription.append(String.format("%39d", checkItemPrice(1013)));
                         minusItemStock(1013, QTY);
                         resetButtonGroup();
                     }else
@@ -638,21 +777,22 @@ public class MainGUI extends JFrame implements ActionListener {
                 }else{
                     JOptionPane.showMessageDialog(null, "Choose QTY ");
                 }
-//                receiptDescription.append(String.format("\n" + "%-9s", String.valueOf(QTY)));
-//                receiptDescription.append(String.format("%15s", brand.get(7) + " " + model.get(7)));
-//                receiptDescription.append(String.format("%37s", checkItemPrice(1013)));
+//                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
+//                receiptDescription.append(String.format("%13s", brand.get(13) + " " + model.get(13)));
+//                receiptDescription.append(String.format("%39d", checkItemPrice(1013)));
 
             }
-            if(e.getSource() == item9){
+            if(e.getSource() == item15){
                 if(QTY != 0) {
                     if(QTY <= checkItemStock(1014)) {
                         price += checkItemPrice(1014) * QTY;
                         totalItems += QTY;
                         setTotalAmount(price);
 
+
                         receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-                        receiptDescription.append(String.format("%15s", brand.get(8) + " " + model.get(8)));
-                        receiptDescription.append(String.format("%25d", checkItemPrice(1014)));
+                        receiptDescription.append(String.format("%13s", brand.get(14) + " " + model.get(14)));
+                        receiptDescription.append(String.format("%33d", checkItemPrice(1014)));
                         minusItemStock(1014, QTY);
                         resetButtonGroup();
                     }else
@@ -661,148 +801,8 @@ public class MainGUI extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Choose QTY ");
                 }
 //                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-//                receiptDescription.append(String.format("%15s", brand.get(8) + " " + model.get(8)));
-//                receiptDescription.append(String.format("%25d", checkItemPrice(1014)));
-
-
-            }
-            if(e.getSource() == item10){
-                if(QTY != 0) {
-                    if(QTY <= checkItemStock(1015)) {
-                        price += checkItemPrice(1015) * QTY;
-                        totalItems += QTY;
-                        setTotalAmount(price);
-
-
-                        receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-                        receiptDescription.append(String.format("%15s", brand.get(9) + " " + model.get(9)));
-                        receiptDescription.append(String.format("%32d", checkItemPrice(1015)));
-                        minusItemStock(1015, QTY);
-                        resetButtonGroup();
-                    }else
-                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1015) + " Stock");
-                }else{
-                    JOptionPane.showMessageDialog(null, "Choose QTY ");
-                }
-//                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-//                receiptDescription.append(String.format("%15s", brand.get(9) + " " + model.get(9)));
-//                receiptDescription.append(String.format("%32d", checkItemPrice(1015)));
-
-
-            }
-            if(e.getSource() == item11){
-                if(QTY != 0) {
-                    if(QTY <= checkItemStock(1016)) {
-                        price += checkItemPrice(1016) * QTY;
-                        totalItems += QTY;
-                        setTotalAmount(price);
-
-
-                        receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-                        receiptDescription.append(String.format("%15s", brand.get(10) + " " + model.get(10)));
-                        receiptDescription.append(String.format("%16d", checkItemPrice(1016)));
-                        minusItemStock(1016, QTY);
-                        resetButtonGroup();
-                    }else
-                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1016) + " Stock");
-                }else{
-                    JOptionPane.showMessageDialog(null, "Choose QTY ");
-                }
-//                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-//                receiptDescription.append(String.format("%15s", brand.get(10) + " " + model.get(10)));
-//                receiptDescription.append(String.format("%16d", checkItemPrice(1016)));
-
-            }
-            if(e.getSource() == item12){
-                if(QTY != 0) {
-                    if(QTY <= checkItemStock(1017)) {
-                        price += checkItemPrice(1017) * QTY;
-                        totalItems += QTY;
-                        setTotalAmount(price);
-
-
-                        receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-                        receiptDescription.append(String.format("%15s", brand.get(11) + " " + model.get(11)));
-                        receiptDescription.append(String.format("%25d", checkItemPrice(1017)));
-                        minusItemStock(1017, QTY);
-                        resetButtonGroup();
-                    }else
-                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1017) + " Stock");
-                }else{
-                    JOptionPane.showMessageDialog(null, "Choose QTY ");
-                }
-//                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-//                receiptDescription.append(String.format("%15s", brand.get(11) + " " + model.get(11)));
-//                receiptDescription.append(String.format("%25d", checkItemPrice(1017)));
-
-            }
-            if(e.getSource() == item13){
-                if(QTY != 0) {
-                    if(QTY <= checkItemStock(1018)) {
-                        price += checkItemPrice(1018) * QTY;
-                        totalItems += QTY;
-                        setTotalAmount(price);
-
-
-                        receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-                        receiptDescription.append(String.format("%15s", brand.get(12) + " " + model.get(12)));
-                        receiptDescription.append(String.format("%36d", checkItemPrice(1018)));
-                        minusItemStock(1018, QTY);
-                        resetButtonGroup();
-                    }else
-                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1018) + " Stock");
-                }else{
-                    JOptionPane.showMessageDialog(null, "Choose QTY ");
-                }
-                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-                receiptDescription.append(String.format("%15s", brand.get(12) + " " + model.get(12)));
-                receiptDescription.append(String.format("%36d", checkItemPrice(1018)));
-
-            }
-            if(e.getSource() == item14){
-                if(QTY != 0) {
-                    if(QTY <= checkItemStock(1019)) {
-                        price += checkItemPrice(1019) * QTY;
-                        totalItems += QTY;
-                        setTotalAmount(price);
-
-
-                        receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-                        receiptDescription.append(String.format("%13s", brand.get(13) + " " + model.get(13)));
-                        receiptDescription.append(String.format("%39d", checkItemPrice(1019)));
-                        minusItemStock(1019, QTY);
-                        resetButtonGroup();
-                    }else
-                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1019) + " Stock");
-                }else{
-                    JOptionPane.showMessageDialog(null, "Choose QTY ");
-                }
-//                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-//                receiptDescription.append(String.format("%13s", brand.get(13) + " " + model.get(13)));
-//                receiptDescription.append(String.format("%39d", checkItemPrice(1019)));
-
-            }
-            if(e.getSource() == item15){
-                if(QTY != 0) {
-                    if(QTY <= checkItemStock(1020)) {
-                        price += checkItemPrice(1020) * QTY;
-                        totalItems += QTY;
-                        setTotalAmount(price);
-
-
-                        receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
-                        receiptDescription.append(String.format("%13s", brand.get(14) + " " + model.get(14)));
-                        receiptDescription.append(String.format("%33d", checkItemPrice(1020)));
-                        minusItemStock(1020, QTY);
-                        resetButtonGroup();
-                    }else
-                        JOptionPane.showMessageDialog(null, "We have only " + checkItemStock(1020) + " Stock");
-                }else{
-                    JOptionPane.showMessageDialog(null, "Choose QTY ");
-                }
-//                receiptDescription.append(String.format("\n" + "%-10s", String.valueOf(QTY)));
 //                receiptDescription.append(String.format("%13s", brand.get(14) + " " + model.get(14)));
-//                receiptDescription.append(String.format("%33d", checkItemPrice(1020)));
+//                receiptDescription.append(String.format("%33d", checkItemPrice(1014)));
 
             }
             if(e.getSource() == payButton){
