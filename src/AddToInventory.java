@@ -7,6 +7,10 @@ import java.sql.*;
 import java.util.concurrent.ExecutionException;
 
 public class AddToInventory extends JFrame {
+    static DBConnect url = DBConnect.URL;
+    static DBConnect user = DBConnect.USER;
+    static DBConnect pw = DBConnect.PASSWORD;
+
     JButton backButton = new JButton("Back");
 
     private JPanel moboAddPanel = new JPanel();
@@ -85,11 +89,9 @@ public class AddToInventory extends JFrame {
     }
     public void insertToSQL(){
         try{
-            String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
-            String user = "papers";
-            String password = "papersarewhite";
 
-            Connection connection = DriverManager.getConnection(url, user,password);
+
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
 
             String QUERY = "INSERT INTO MOBO(Brand, Model, Price, Num_Stock, Cash_Price, CPU_Socket, Memory_type, Form_Factor)" +
                     "VALUES(?, ? ,?, ?, ?, ?, ?, ?)";
@@ -156,13 +158,10 @@ public class AddToInventory extends JFrame {
     }
 
     public static int getRowCount(){
-        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
-        String user = "papers";
-        String password = "papersarewhite";
         int count = 0;
 
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "SELECT COUNT (*) as 'rowcount' From MOBO;";
 
             Statement statement = connection.createStatement();

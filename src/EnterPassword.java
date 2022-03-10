@@ -9,6 +9,10 @@ import java.util.concurrent.ExecutionException;
 
 public class EnterPassword extends JFrame{
 
+    static DBConnect url = DBConnect.URL;
+    static DBConnect user = DBConnect.USER;
+    static DBConnect pw = DBConnect.PASSWORD;
+
     static JPasswordField enterCCPassword;
     JButton proceed;
     JButton backBtn;
@@ -89,13 +93,10 @@ public class EnterPassword extends JFrame{
         return new String(Password());
     }
     static public String getPasswordCC() {
-        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=PaymentTypes";
-        String user = "papers";
-        String password = "papersarewhite";
         String pw_cc = "";
 
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "SELECT pw_to_Pay from CreditCard where Credit_Card_Num=?";
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
 
@@ -125,11 +126,8 @@ public class EnterPassword extends JFrame{
     }
 
     static void CreditCardHistory(){
-        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=PaymentTypes";
-        String user = "papers";
-        String password = "papersarewhite";
         try{
-            Connection connection = DriverManager.getConnection(url, user, password);
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "INSERT INTO CreditCard_History(Credit_Card_Num, Date_Time_Used, Amount_spent) select Credit_Card_Num, GETDATE(), ? from CreditCard where Credit_Card_Num=?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);

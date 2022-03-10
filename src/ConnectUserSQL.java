@@ -11,9 +11,10 @@ public class ConnectUserSQL {
         return managerAccess;
     }
 
-    final static String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=Credentials";
-    final static String user = "papers";
-    final static String password = "papersarewhite";
+    static DBConnect url = DBConnect.URL;
+    static DBConnect user = DBConnect.USER;
+    static DBConnect pw = DBConnect.PASSWORD;
+
 
     public static void correctUserSQL(){
 
@@ -21,7 +22,7 @@ public class ConnectUserSQL {
 
         try
         {
-            Connection connection = DriverManager.getConnection(url,user, password);
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String sql = "SELECT * FROM pos_account where account_username=? and account_password=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, LoginGUI.getInputUsername());

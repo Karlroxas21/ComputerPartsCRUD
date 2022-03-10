@@ -10,6 +10,10 @@ import java.util.Locale;
 
 public class CreditCard extends JFrame implements ActionListener {
 
+    static DBConnect url = DBConnect.URL;
+    static DBConnect user = DBConnect.USER;
+    static DBConnect pw = DBConnect.PASSWORD;
+
     private JLabel cc_Num = new JLabel("Enter CC number: ");
     private static JTextArea enterCcNum = new JTextArea();
     private JButton button = new JButton("ENTER");
@@ -71,13 +75,11 @@ public class CreditCard extends JFrame implements ActionListener {
 
     }
     public static int checkCreditBalance(int CC_ID){
-        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=PaymentTypes";
-        String user = "papers";
-        String password = "papersarewhite";
+
         int ccLimit = 0;
 
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "SELECT Credit_Limit FROM CreditCard where Credit_Card_Num=?";
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
             preparedStatement.setInt(1, CC_ID);
@@ -96,14 +98,9 @@ public class CreditCard extends JFrame implements ActionListener {
     }
 
     public static void minusCCBalance(int CC_ID, int amountSpent){
-        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=PaymentTypes";
-        String user = "papers";
-        String password = "papersarewhite";
-
-
 
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "UPDATE CreditCard SET Credit_Limit=? WHERE Credit_Card_Num=?";
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
 
@@ -126,13 +123,10 @@ public class CreditCard extends JFrame implements ActionListener {
     }
 
     public static boolean isCCNumValid(int CC_ID){
-        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=PaymentTypes";
-        String user = "papers";
-        String password = "papersarewhite";
         int ccID = 0;
 
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "select Credit_Card_Num from CreditCard where Credit_Card_Num=?";
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
             preparedStatement.setInt(1, CC_ID);

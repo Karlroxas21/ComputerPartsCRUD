@@ -9,6 +9,10 @@ import java.sql.ResultSet;
 
 
 public class LoginGUI extends JFrame implements ActionListener {
+    static DBConnect url = DBConnect.URL;
+    static DBConnect user = DBConnect.USER;
+    static DBConnect pw = DBConnect.PASSWORD;
+
 
     public static String account_access = "";
     public static boolean isAuthorized = false;
@@ -72,13 +76,11 @@ public class LoginGUI extends JFrame implements ActionListener {
 
     //Get First Name of account logged in
     static public String getAccFName() {
-        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=Credentials";
-        String user = "papers";
-        String password = "papersarewhite";
+
         String name = "";
 
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "SELECT Fname FROM pos_account WHERE account_username=?";
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
 
@@ -99,13 +101,10 @@ public class LoginGUI extends JFrame implements ActionListener {
     }
     //Get last name of account logged in
     static public String getAccLName() {
-        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=Credentials";
-        String user = "papers";
-        String password = "papersarewhite";
         String LName = "";
 
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "SELECT Lname FROM pos_account WHERE account_username=?";
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
 

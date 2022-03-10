@@ -9,13 +9,19 @@ import java.util.ArrayList;
 
 
 public class MainGUI extends JFrame implements ActionListener {
+
+    static DBConnect url = DBConnect.URL;
+    static DBConnect user = DBConnect.USER;
+    static DBConnect pw = DBConnect.PASSWORD;
+
+
     static MainGUI mainGUI;
-    private Panel receiptPanel  = new Panel();
+    private JPanel receiptPanel  = new JPanel();
     private JPanel northReceiptPanel = new JPanel();
     private JPanel centerReceiptPanel = new JPanel();
-    private Panel itemPanel = new Panel();
-    private Panel categoryPanel = new Panel();
-    private Panel qtyPanel = new Panel();
+    private JPanel itemPanel = new JPanel();
+    private JPanel categoryPanel = new JPanel();
+    private JPanel qtyPanel = new JPanel();
     private JPanel functionPanel = new JPanel();
 
 
@@ -876,12 +882,9 @@ public class MainGUI extends JFrame implements ActionListener {
 
     /* Return the stock number*/
     public static int checkItemStock(int product_id){
-        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
-        String user = "papers";
-        String password = "papersarewhite";
         int num_Stock = 0;
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "SELECT Num_Stock from MOBO WHERE Product_ID=?";
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
             preparedStatement.setString(1, String.valueOf(product_id).toString());
@@ -904,12 +907,9 @@ public class MainGUI extends JFrame implements ActionListener {
     /* Return the updated stock after buying. Will return nothing if QTY > Stock.
     * Also it updates automatically in DB */
     public static int minusItemStock(int product_id, int QTY){
-        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
-        String user = "papers";
-        String password = "papersarewhite";
         int num_Stock = 0;
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "SELECT Num_Stock from MOBO WHERE Product_ID=?";
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
             preparedStatement.setString(1, String.valueOf(product_id).toString());
@@ -947,12 +947,9 @@ public class MainGUI extends JFrame implements ActionListener {
 
     /* Return item price in db */
     public static int checkItemPrice(int product_id){
-        String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
-        String user = "papers";
-        String password = "papersarewhite";
         int Price = 0;
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "SELECT Price from MOBO WHERE Product_ID=?";
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
             preparedStatement.setString(1, String.valueOf(product_id).toString());
@@ -983,11 +980,7 @@ public class MainGUI extends JFrame implements ActionListener {
 
         try{
 
-            String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
-            String user = "papers";
-            String password = "papersarewhite";
-
-            Connection connection = DriverManager.getConnection(url,user, password);
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "SELECT Brand, Model from MOBO";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(QUERY);

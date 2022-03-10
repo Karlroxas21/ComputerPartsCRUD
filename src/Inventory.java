@@ -10,6 +10,9 @@ import java.sql.Statement;
 
 
 public class Inventory extends JFrame {
+    static DBConnect url = DBConnect.URL;
+    static DBConnect user = DBConnect.USER;
+    static DBConnect pw = DBConnect.PASSWORD;
 
 
     JButton backButton = new JButton("Back");
@@ -82,11 +85,8 @@ public class Inventory extends JFrame {
 
     public void setMoboTable(){
         try{
-            String url = "jdbc:sqlserver://DESKTOP-C280F8T\\MSSQLSERVER;databaseName=computer_parts";
-            String user = "papers";
-            String password = "papersarewhite";
 
-            Connection connection = DriverManager.getConnection(url, user, password);
+            Connection connection = DriverManager.getConnection(url.getDBConnect(), user.getDBConnect(), pw.getDBConnect());
             String QUERY = "SELECT * FROM MOBO";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(QUERY);
