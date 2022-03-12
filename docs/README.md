@@ -15,3 +15,10 @@ we only have only 1 Product which is MOBO. The max product is only 15 items.
 
 Basically, we just satisfy the condition in project because we don't have enough
 time.
+
+## Login
+![](LogIn.png)
+
+## Main interface 
+###### (Manager access)
+![](MainInterface.png)

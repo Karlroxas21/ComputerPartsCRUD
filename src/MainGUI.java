@@ -77,7 +77,7 @@ public class MainGUI extends JFrame implements ActionListener {
     private JTextField youPay = new JTextField();
 
     private JLabel exchangeTXT = new JLabel("Exchange: ");
-    private JLabel exchange = new JLabel("1234567890");
+    private JLabel exchange = new JLabel("");
 
     static JTextArea receiptDescription = new JTextArea();
     JScrollPane scrollPane = new JScrollPane(receiptDescription);
