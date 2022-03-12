@@ -1,4 +1,4 @@
-#Computer Parts Point of Sales System
+#Computer Parts Point of Sales System test
 
 ####With Create, Read, Update, and Delete(CRUD) functionality that connected to Database
 *****
